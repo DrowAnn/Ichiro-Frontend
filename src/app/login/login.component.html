@@ -1,22 +1,38 @@
-<h1>Log In</h1>
+<a href="inicio">back</a>
 
-<form class="example-container">
-  <mat-form-field class="inputs">
-    <mat-label>Nombre de Usuario</mat-label>
-    <input matInput />
-  </mat-form-field>
-  <mat-form-field class="inputs">
-    <mat-label>Contraseña</mat-label>
-    <input matInput [type]="oculto() ? 'password' : 'text'" />
-    <button
-      mat-icon-button
-      matSuffix
-      (click)="ocultarContrasena($event)"
-      [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="oculto()"
-    >
-      <mat-icon>{{ oculto() ? "visibility_off" : "visibility" }}</mat-icon>
-    </button>
-  </mat-form-field>
-  <button mat-raised-button>Ingresar</button>
-</form>
+<div class="contenidoLogin">
+  <h1>Log In</h1>
+
+  <form
+    class="example-container"
+    [formGroup]="datosFormulario"
+    (ngSubmit)="botonIngresar()"
+  >
+    <mat-form-field class="inputs">
+      <mat-label>Nombre de Usuario</mat-label>
+      <input matInput formControlName="nombreUsuario" required />
+    </mat-form-field>
+    <mat-form-field class="inputs">
+      <mat-label>Contraseña</mat-label>
+      <input
+        matInput
+        [type]="oculto() ? 'password' : 'text'"
+        required
+        formControlName="contrasena"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="ocultarContrasena($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="oculto()"
+      >
+        <mat-icon>{{ oculto() ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    @if ((mensajeError()) !== "") {
+    <p style="color: red">{{ mensajeError() }}</p>
+    }
+    <button mat-raised-button>Ingresar</button>
+  </form>
+</div>

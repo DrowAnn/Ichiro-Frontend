@@ -19,6 +19,11 @@ export const routes: Route[] = [
         path: 'login',
         loadComponent: () => import('./login/login.component'),
       },
+      {
+        path: 'modulos',
+        loadComponent: () =>
+          import('./interfaz-modulos/interfaz-modulos.component'),
+      },
     ],
   },
 ];
