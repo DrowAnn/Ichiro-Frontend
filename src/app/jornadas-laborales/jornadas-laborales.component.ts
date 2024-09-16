@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './jornadas-laborales.component.html',
-  styleUrl: './jornadas-laborales.component.scss'
+  styleUrl: './jornadas-laborales.component.scss',
 })
-export class JornadasLaboralesComponent {
-
-}
+export default class JornadasLaboralesComponent {}

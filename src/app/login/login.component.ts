@@ -10,7 +10,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../servicios/auth.service';
+import { AuthService } from '../servicios/auth/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -58,6 +58,7 @@ export default class LoginComponent {
       this.authService.login(nombreUsuario, contrasena).subscribe({
         next: (respuesta) => {
           console.log(respuesta);
+          localStorage.setItem('accessToken', respuesta.accessToken);
           this.router.navigate(['modulos']);
         },
         error: (error) => {

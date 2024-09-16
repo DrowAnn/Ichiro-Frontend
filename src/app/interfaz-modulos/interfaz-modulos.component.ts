@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-interfaz-modulos',
@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
   templateUrl: './interfaz-modulos.component.html',
   styleUrl: './interfaz-modulos.component.scss',
 })
-export default class InterfazModulosComponent {}
+export default class InterfazModulosComponent implements OnInit {
+  accessToken: string | null = null;
+
+  ngOnInit() {
+    if (typeof window !== 'undefined') {
+      this.accessToken = localStorage.getItem('accessToken');
+      console.log(this.accessToken);
+    }
+  }
+}

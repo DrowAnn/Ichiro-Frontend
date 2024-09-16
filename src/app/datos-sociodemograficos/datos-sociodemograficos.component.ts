@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './datos-sociodemograficos.component.html',
-  styleUrl: './datos-sociodemograficos.component.scss'
+  styleUrl: './datos-sociodemograficos.component.scss',
 })
-export class DatosSociodemograficosComponent {
-
-}
+export default class DatosSociodemograficosComponent {}

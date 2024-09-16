@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './liquidaciones-nominas.component.html',
-  styleUrl: './liquidaciones-nominas.component.scss'
+  styleUrl: './liquidaciones-nominas.component.scss',
 })
-export class LiquidacionesNominasComponent {
-
-}
+export default class LiquidacionesNominasComponent {}
