@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../servicios/auth/auth.service';
+import { Component, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-interfaz-modulos',
   standalone: true,
-  imports: [],
+  imports: [MatButtonModule, MatCardModule],
   templateUrl: './interfaz-modulos.component.html',
   styleUrl: './interfaz-modulos.component.scss',
 })
-export default class InterfazModulosComponent implements OnInit {
-  accessToken: string | null = null;
-
-  ngOnInit() {
-    if (typeof window !== 'undefined') {
-      this.accessToken = localStorage.getItem('accessToken');
-      console.log(this.accessToken);
-    }
+export default class InterfazModulosComponent {
+  rolUsuario = signal<string | undefined>('');
+  constructor(private readonly authService: AuthService) {
+    const infoUsuario = authService.obtenerInfoUsuario();
+    this.rolUsuario.set(infoUsuario?.rol);
   }
+
+  bolita() {}
 }

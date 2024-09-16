@@ -27,7 +27,11 @@ export class AuthService {
     });
   }
 
-  obtenerToken(): string | null {
+  guardarToken(respuesta: any): void {
+    localStorage.setItem('accessToken', respuesta.accessToken);
+  }
+
+  leerToken(): string | null {
     if (typeof window !== 'undefined') {
       return localStorage.getItem(this.tokenKey);
     }
@@ -41,7 +45,7 @@ export class AuthService {
   }
 
   obtenerInfoUsuario(): InfoUsuario | null {
-    const token = this.obtenerToken();
+    const token = this.leerToken();
     if (token) {
       try {
         return jwtDecode(token);
@@ -63,7 +67,7 @@ export class AuthService {
   }
 
   estadoAutenticado(): boolean {
-    const token = this.obtenerToken();
+    const token = this.leerToken();
     return token !== null && !this.tokenExpirado();
   }
 }

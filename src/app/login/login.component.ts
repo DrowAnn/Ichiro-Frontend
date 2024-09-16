@@ -57,13 +57,11 @@ export default class LoginComponent {
       const { nombreUsuario, contrasena } = this.datosFormulario.value;
       this.authService.login(nombreUsuario, contrasena).subscribe({
         next: (respuesta) => {
-          console.log(respuesta);
-          localStorage.setItem('accessToken', respuesta.accessToken);
+          this.authService.guardarToken(respuesta);
           this.router.navigate(['modulos']);
         },
         error: (error) => {
           console.log(error);
-          console.log(error.error.message);
           this.mensajeError.set(error.error.message);
         },
       });
