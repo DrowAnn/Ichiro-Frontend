@@ -1,0 +1,29 @@
+<mat-card class="cards" appearance="outlined">
+  <mat-card-header>
+    <div
+      mat-card-avatar
+      [ngStyle]="{
+        'background-image': 'url(' + perfilImg + ')',
+        'background-size': 'cover',
+        'background-position': 'center'
+      }"
+    ></div>
+    <mat-card-title style="color: #1565c0">{{ titulo }}</mat-card-title>
+    <mat-card-subtitle style="color: #0d47a1">{{
+      subtitulo
+    }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p style="text-align: center; margin-top: 1vh; font-size: small">
+      {{ contenido }}
+    </p>
+  </mat-card-content>
+  <a
+    mat
+    mat-raised-button
+    [href]="href"
+    style="margin: 1.5vh; border: 1px solid #1565c0"
+  >
+    Ingresar
+  </a>
+</mat-card>

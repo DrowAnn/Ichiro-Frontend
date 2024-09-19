@@ -45,14 +45,13 @@ export default class LoginComponent {
     });
   }
 
-  ocultarContrasena(evento: MouseEvent) {
+  ocultarContrasena(event: MouseEvent) {
     this.oculto.set(!this.oculto());
-    evento.stopPropagation();
-    evento.preventDefault();
+    event.stopPropagation();
+    event.preventDefault();
   }
 
   botonIngresar() {
-    console.log(this.datosFormulario);
     if (this.datosFormulario.valid) {
       const { nombreUsuario, contrasena } = this.datosFormulario.value;
       this.authService.login(nombreUsuario, contrasena).subscribe({

@@ -1,13 +1,16 @@
 <h1>Ichiro App</h1>
 
-<p>{{ rolUsuario() }}</p>
+<a mat-raised-button href="login">Cerrar Sesión</a>
 
 <div class="enlaces">
-  <a href="colaboradores">
-    <mat-card>
-      <mat-card-content>Colaboradores</mat-card-content>
-    </mat-card>
-  </a>
-
-  <a mat-raised-button href="login">Cerrar Sesión</a>
+  @for (modulo of infoModulos; track $index) { @if
+  (modulo.roles.includes(rolUsuario())) {
+  <app-cards-modulos
+    [perfilImg]="modulo.perfilImg"
+    [titulo]="modulo.titulo"
+    [subtitulo]="modulo.subtitulo"
+    [contenido]="modulo.contenido"
+    [href]="modulo.href"
+  />
+  } }
 </div>
