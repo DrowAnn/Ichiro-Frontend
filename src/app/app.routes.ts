@@ -1,89 +1,78 @@
-import { Route } from '@angular/router';
-import { AppComponent } from './app.component';
+import { Routes } from '@angular/router';
 import { AuthGuard } from './servicios/auth/auth.guard';
 
-export const routes: Route[] = [
+export const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'inicio',
-      },
-      {
-        path: 'inicio',
-        loadComponent: () => import('./inicio/inicio.component'),
-      },
-      {
-        path: 'login',
-        loadComponent: () => import('./login/login.component'),
-      },
-      {
-        path: 'modulos',
-        loadComponent: () =>
-          import('./interfaz-modulos/interfaz-modulos.component'),
-        canActivate: [AuthGuard],
-        data: {
-          rolesPermitidos: [
-            'Super_Usuario',
-            'Administrador',
-            'Lider_De_Area',
-            'Colaborador',
-          ],
-        },
-      },
-      {
-        path: 'colaboradores',
-        loadComponent: () => import('./colaboradores/colaboradores.component'),
-        canActivate: [AuthGuard],
-        data: {
-          rolesPermitidos: [
-            'Super_Usuario',
-            'Administrador',
-            'Lider_De_Area',
-            'Colaborador',
-          ],
-        },
-      },
-      {
-        path: 'perfil-sociodemografico',
-        loadComponent: () =>
-          import('./datos-sociodemograficos/datos-sociodemograficos.component'),
-        canActivate: [AuthGuard],
-        data: {
-          rolesPermitidos: ['Super_Usuario', 'Administrador'],
-        },
-      },
-      {
-        path: 'jornadas-laborales',
-        loadComponent: () =>
-          import('./jornadas-laborales/jornadas-laborales.component'),
-        canActivate: [AuthGuard],
-        data: {
-          rolesPermitidos: ['Super_Usuario', 'Administrador', 'Lider_De_Area'],
-        },
-      },
-      {
-        path: 'liquidaciones-nominas',
-        loadComponent: () =>
-          import('./liquidaciones-nominas/liquidaciones-nominas.component'),
-        canActivate: [AuthGuard],
-        data: {
-          rolesPermitidos: ['Super_Usuario', 'Administrador'],
-        },
-      },
-      {
-        path: 'usuarios',
-        loadComponent: () => import('./usuarios/usuarios.component'),
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'error',
-        loadComponent: () =>
-          import('./componentes/pagina-error/pagina-error.component'),
-      },
-    ],
+    pathMatch: 'full',
+    loadComponent: () => import('./inicio/inicio.component'),
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login.component'),
+  },
+  {
+    path: 'modulos',
+    loadComponent: () =>
+      import('./interfaz-modulos/interfaz-modulos.component'),
+    canActivate: [AuthGuard],
+    data: {
+      rolesPermitidos: [
+        'Super_Usuario',
+        'Administrador',
+        'Lider_De_Area',
+        'Colaborador',
+      ],
+    },
+  },
+  {
+    path: 'colaboradores',
+    loadComponent: () => import('./colaboradores/colaboradores.component'),
+    canActivate: [AuthGuard],
+    data: {
+      rolesPermitidos: [
+        'Super_Usuario',
+        'Administrador',
+        'Lider_De_Area',
+        'Colaborador',
+      ],
+    },
+  },
+  {
+    path: 'perfil-sociodemografico',
+    loadComponent: () =>
+      import('./datos-sociodemograficos/datos-sociodemograficos.component'),
+    canActivate: [AuthGuard],
+    data: {
+      rolesPermitidos: ['Super_Usuario', 'Administrador'],
+    },
+  },
+  {
+    path: 'jornadas-laborales',
+    loadComponent: () =>
+      import('./jornadas-laborales/jornadas-laborales.component'),
+    canActivate: [AuthGuard],
+    data: {
+      rolesPermitidos: ['Super_Usuario', 'Administrador', 'Lider_De_Area'],
+    },
+  },
+  {
+    path: 'liquidaciones-nominas',
+    loadComponent: () =>
+      import('./liquidaciones-nominas/liquidaciones-nominas.component'),
+    canActivate: [AuthGuard],
+    data: {
+      rolesPermitidos: ['Super_Usuario', 'Administrador'],
+    },
+  },
+  {
+    path: 'usuarios',
+    loadComponent: () => import('./usuarios/usuarios.component'),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'error',
+    loadComponent: () =>
+      import('./componentes/pagina-error/pagina-error.component'),
   },
 ];

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-usuarios',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class UsuariosComponent {}

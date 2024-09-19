@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-jornadas-laborales',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './jornadas-laborales.component.html',
   styleUrl: './jornadas-laborales.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class JornadasLaboralesComponent {}

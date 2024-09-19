@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AuthService } from './../servicios/auth/auth.service';
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CardsModulosComponent } from '../componentes/cards-modulos/cards-modulos.component';
@@ -16,6 +16,7 @@ import { CardsModulosComponent } from '../componentes/cards-modulos/cards-modulo
   ],
   templateUrl: './interfaz-modulos.component.html',
   styleUrl: './interfaz-modulos.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class InterfazModulosComponent {
   rolUsuario = signal<string>('');

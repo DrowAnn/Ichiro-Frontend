@@ -1,1 +1,14 @@
-<p>pagina-error works!</p>
+<div class="contenedor">
+  <mat-icon
+    aria-hidden="false"
+    aria-label="Example home icon"
+    fontIcon="home"
+  ></mat-icon>
+
+  <h1 style="color: #1565c0">Acceso Denegado</h1>
+  <p>
+    El usuario <span>{{ usuario() }}</span> tiene rol de
+    <span>{{ rolUsuario() }}</span> y por este motivo <span>NO</span> tiene
+    acceso a este recurso
+  </p>
+</div>
