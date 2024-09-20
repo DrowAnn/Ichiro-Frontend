@@ -34,7 +34,7 @@ export default class InterfazModulosComponent {
       contenido:
         'En este módulo podrás consultar y/o administrar los datos laborales de cada colaborador de la compañía',
       href: 'colaboradores',
-      roles: ['Colaborador', 'Super_Usuario'],
+      roles: ['Super_Usuario', 'Administrador', 'Lider_De_Area', 'Colaborador'],
     },
     {
       perfilImg: '/imagenes/ps.png',
@@ -43,7 +43,7 @@ export default class InterfazModulosComponent {
       contenido:
         'En este módulo podrás consultar y/o administrar el perfil sociodemográfico de cada colaborador de la compañía',
       href: 'perfil-sociodemografico',
-      roles: ['Colaborador', 'Super_Usuario'],
+      roles: ['Super_Usuario', 'Administrador'],
     },
     {
       perfilImg: '/imagenes/jl.png',
@@ -52,7 +52,7 @@ export default class InterfazModulosComponent {
       contenido:
         'En este módulo podrás consultar y/o administrar las jornadas laborales de cada colaborador, su cumplimiento y el cálculos de recargos y horas extras',
       href: 'jornadas-laborales',
-      roles: ['Colaborador', 'Super_Usuario'],
+      roles: ['Super_Usuario', 'Administrador', 'Lider_De_Area'],
     },
     {
       perfilImg: '/imagenes/ln.png',
@@ -61,7 +61,7 @@ export default class InterfazModulosComponent {
       contenido:
         'En este módulo podrás consultar y/o administrar las liquidaciones de nóminas de cada colaborador, el monto de pago y los detalles de liquidación',
       href: 'liquidaciones-nominas',
-      roles: ['Colaborador', 'Super_Usuario'],
+      roles: ['Super_Usuario', 'Administrador'],
     },
   ];
 }

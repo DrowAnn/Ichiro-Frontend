@@ -1,6 +1,6 @@
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,8 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const rolEsperado: string[] = route.data['rolesPermitidos'];
-    if (this.authService.estadoAutenticado()) {
+
+    if (!this.authService.tokenExpirado()) {
       const infoUsuario = this.authService.obtenerInfoUsuario();
       if (infoUsuario && rolEsperado.includes(infoUsuario.rol)) {
         return true;
@@ -22,7 +23,6 @@ export class AuthGuard implements CanActivate {
         return false;
       }
     }
-    this.router.navigate(['login']);
     return false;
   }
 }

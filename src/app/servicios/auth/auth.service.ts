@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   guardarToken(respuesta: any): void {
-    localStorage.setItem('accessToken', respuesta.accessToken);
+    localStorage.setItem(this.tokenKey, respuesta.accessToken);
   }
 
   leerToken(): string | null {
@@ -64,10 +64,5 @@ export class AuthService {
       return Date.now() > fechaExpiracion;
     }
     return true;
-  }
-
-  estadoAutenticado(): boolean {
-    const token = this.leerToken();
-    return token !== null && !this.tokenExpirado();
   }
 }

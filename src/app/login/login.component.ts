@@ -39,9 +39,6 @@ export default class LoginComponent {
     private router: Router,
     private readonly authService: AuthService
   ) {
-    if (!this.authService.tokenExpirado()) {
-      this.router.navigate(['modulos']);
-    }
     this.datosFormulario = formBuilder.group({
       nombreUsuario: ['', [Validators.required]],
       contrasena: ['', [Validators.required]],

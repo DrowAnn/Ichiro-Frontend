@@ -5,7 +5,7 @@
 
   <a
     mat-raised-button
-    href="login"
+    [href]="estadoToken() ? 'modulos' : 'login'"
     style="border: 1px solid #0bb0f2; color: #0bb0f2"
     >Iniciar Sesión</a
   >
