@@ -1,7 +1,14 @@
-<mat-toolbar>
-  <a href="" style="text-decoration: none; color: black">Ichiro</a>
+<mat-toolbar style="background-color: #e4f5fc; height: 10vh">
+  <a href="" style="text-decoration: none; color: black; font-weight: 500">
+    <img src="/imagenes/logoOrva.png" style="width: 6vw; padding-top: 1vh" />
+  </a>
   <span class="example-spacer"></span>
-  <button mat-icon-button (click)="cerrarSesion()">
-    <mat-icon style="color: red">power_settings_new</mat-icon>
+  <button
+    mat-raised-button
+    (click)="cerrarSesion()"
+    style="color: #0bb0f2; border: 1px solid #0bb0f2"
+  >
+    <mat-icon style="color: red; font-weight: 800">power_settings_new</mat-icon>
+    Cerrar Sesión
   </button>
 </mat-toolbar>

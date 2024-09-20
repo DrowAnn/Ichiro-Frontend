@@ -28,7 +28,7 @@ export default class InterfazModulosComponent {
 
   infoModulos = [
     {
-      perfilImg: '/imagenes/imagenPrueba.jpg',
+      perfilImg: '/imagenes/co.png',
       titulo: 'Colaboradores',
       subtitulo: 'RRHH',
       contenido:
@@ -37,7 +37,7 @@ export default class InterfazModulosComponent {
       roles: ['Colaborador', 'Super_Usuario'],
     },
     {
-      perfilImg: '/imagenes/imagenPrueba.jpg',
+      perfilImg: '/imagenes/ps.png',
       titulo: 'Perfil Sociodemográfico',
       subtitulo: 'RRHH',
       contenido:
@@ -46,7 +46,7 @@ export default class InterfazModulosComponent {
       roles: ['Colaborador', 'Super_Usuario'],
     },
     {
-      perfilImg: '/imagenes/imagenPrueba.jpg',
+      perfilImg: '/imagenes/jl.png',
       titulo: 'Jornadas Laborales',
       subtitulo: 'RRHH',
       contenido:
@@ -55,7 +55,7 @@ export default class InterfazModulosComponent {
       roles: ['Colaborador', 'Super_Usuario'],
     },
     {
-      perfilImg: '/imagenes/imagenPrueba.jpg',
+      perfilImg: '/imagenes/ln.png',
       titulo: 'Liquidaciones de Nóminas',
       subtitulo: 'Financiero',
       contenido:
