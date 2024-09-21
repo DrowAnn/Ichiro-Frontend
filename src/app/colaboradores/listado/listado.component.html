@@ -1,0 +1,19 @@
+<div class="contenedor">
+  <div class="listaColaboradores">
+    @for (colaborador of listaColaboradores(); track $index) {
+    <button
+      mat-raised-button
+      style="
+        margin: 1vh;
+        color: black;
+        border: 1px solid #0bb0f2;
+        justify-content: left;
+      "
+    >
+      {{ $index + 1 }}. {{ colaborador.primerNombre }}
+      {{ colaborador.segundoNombre }} {{ colaborador.primerApellido }}
+      {{ colaborador.segundoApellido }} - {{ colaborador.area }}
+    </button>
+    }
+  </div>
+</div>

@@ -27,7 +27,8 @@ export const routes: Routes = [
   },
   {
     path: 'colaboradores',
-    loadComponent: () => import('./colaboradores/colaboradores.component'),
+    loadChildren: () =>
+      import('./colaboradores/colaboradores.routes').then((m) => m.routes),
     canActivate: [AuthGuard],
     data: {
       rolesPermitidos: [
@@ -72,6 +73,11 @@ export const routes: Routes = [
   },
   {
     path: 'error',
+    loadComponent: () =>
+      import('./componentes/pagina-error/pagina-error.component'),
+  },
+  {
+    path: '**',
     loadComponent: () =>
       import('./componentes/pagina-error/pagina-error.component'),
   },
