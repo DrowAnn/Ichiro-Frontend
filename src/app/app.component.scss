@@ -1,3 +1,22 @@
 .content {
-  padding-bottom: 4rem; /* Asegúrate de dejar espacio para el footer */
+  padding-bottom: 4rem;
+}
+
+:host {
+  .main-container {
+    display: flex;
+    flex-direction: row;
+    min-height: 90vh;
+  }
+
+  .sideNavButtons {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2vh;
+  }
+}
+
+.active {
+  background-color: #faf9fb;
+  border: 1px solid #0bb0f2;
 }

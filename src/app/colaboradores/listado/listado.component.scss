@@ -1,11 +1,17 @@
 .contenedor {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  justify-content: space-around;
 }
 
 .listaColaboradores {
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: 40vw;
+}
+
+.botonAuxiliar {
+  display: flex;
+  min-width: 14vw;
+  justify-content: center;
 }

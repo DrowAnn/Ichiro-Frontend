@@ -1,2 +1,122 @@
 <app-header />
-<router-outlet />
+<mat-sidenav-container>
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    [(opened)]="opened"
+    class="sideNavContainer"
+    style="background-color: #e4f5fc; border-radius: 0; width: 18vw"
+  >
+    <div class="sideNavButtons">
+      <button
+        mat-button
+        [routerLink]="['/']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        style="
+          font-size: medium;
+          margin: 0.5vh 1vw;
+          color: #0bb0f2;
+          justify-content: left;
+        "
+      >
+        Inicio
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/modulos']"
+        routerLinkActive="active"
+        style="
+          font-size: medium;
+          margin: 0.5vh 1vw;
+          color: #0bb0f2;
+          justify-content: left;
+        "
+      >
+        Modulos
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/colaboradores']"
+        routerLinkActive="active"
+        style="
+          font-size: medium;
+          margin: 0.5vh 1vw;
+          color: #0bb0f2;
+          justify-content: left;
+        "
+      >
+        Colaboradores
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/perfil-sociodemografico']"
+        routerLinkActive="active"
+        style="
+          font-size: medium;
+          margin: 0.5vh 1vw;
+          color: #0bb0f2;
+          justify-content: left;
+        "
+      >
+        Perfil Sociodemografico
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/jornadas-laborales']"
+        routerLinkActive="active"
+        style="
+          font-size: medium;
+          margin: 0.5vh 1vw;
+          color: #0bb0f2;
+          justify-content: left;
+        "
+      >
+        Jornadas Laborales
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/liquidaciones-nominas']"
+        routerLinkActive="active"
+        style="
+          font-size: medium;
+          margin: 0.5vh 1vw;
+          color: #0bb0f2;
+          justify-content: left;
+        "
+      >
+        Liquidaciones de Nomina
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <main class="main-container">
+      <div style="background-color: #e4f5fc; padding: 14px">
+        <button
+          mat-mini-fab
+          (click)="sidenav.toggle()"
+          style="background-color: #faf9fb"
+        >
+          @if (opened) {
+          <mat-icon style="color: red; margin: 0; font-size: x-large"
+            >close</mat-icon
+          >
+          } @else {
+          <mat-icon style="color: #0bb0f2; margin: 0; font-size: x-large"
+            >menu</mat-icon
+          >
+          }
+        </button>
+      </div>
+      <!-- Router -->
+      <div style="width: 100%; display: flex; flex-direction: row">
+        <div style="width: 96%">
+          <router-outlet />
+        </div>
+        <div style="width: 4%"></div>
+      </div>
+      <!-- /Router -->
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
