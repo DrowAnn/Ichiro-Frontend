@@ -1,3 +1,4 @@
+import { Colaborador } from './../colaborador';
 import { Component, signal } from '@angular/core';
 import { ColaboradoresService } from '../../servicios/colaboradores/colaboradores.service';
 import { MatListModule } from '@angular/material/list';
@@ -25,7 +26,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './listado.component.scss',
 })
 export default class ListadoComponent {
-  listaColaboradores = signal<any>([]);
+  listaColaboradores = signal<Colaborador[]>([]);
   areas: string[] = [
     'Asistencial',
     'Administrativo',
@@ -41,29 +42,25 @@ export default class ListadoComponent {
     'Mantenimiento',
     'Medicina_General',
     'Rayos_X',
-  ];
+  ].sort();
 
   constructor(
     private readonly colaboradoresService: ColaboradoresService,
     private router: Router
   ) {
     this.colaboradoresService.obtenerColaboradores().subscribe({
-      next: (response) => {
+      next: (response: Colaborador[]) => {
         this.listaColaboradores.set(response);
-        const arrayLista = Object.entries(this.listaColaboradores());
-        console.log(arrayLista);
+        this.listaColaboradores().sort((a, b) => {
+          if ((a?.area ?? '').localeCompare(b?.area ?? '') == 0) {
+            return a.primerNombre.localeCompare(b.primerNombre);
+          }
+          return (a?.area ?? '').localeCompare(b?.area ?? '');
+        });
       },
       error: (error) => {
         console.log(error);
       },
     });
-  }
-
-  datosColaborador(numeroIdentificacion: string): void {
-    this.router.navigate([`colaboradores/${numeroIdentificacion}`]);
-  }
-
-  crearUsuario(): void {
-    this.router.navigate(['colaboradores/crearUsuarrio']);
   }
 }

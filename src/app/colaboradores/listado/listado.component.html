@@ -16,7 +16,7 @@
     (colaborador.area === area) {
     <button
       mat-raised-button
-      (click)="datosColaborador(colaborador.numeroIdentificacion)"
+      [routerLink]="['/colaboradores', colaborador.numeroIdentificacion]"
       style="
         margin: 1vh;
         color: black;
@@ -26,7 +26,7 @@
     >
       {{ $index + 1 }}. {{ colaborador.primerNombre }}
       {{ colaborador.segundoNombre }} {{ colaborador.primerApellido }}
-      {{ colaborador.segundoApellido }} - {{ colaborador.area }}
+      {{ colaborador.segundoApellido }} - {{ colaborador.cargo }}
     </button>
     } }
     <mat-divider style="margin-bottom: 4vh; margin-top: 1vh"></mat-divider>
@@ -35,7 +35,7 @@
   <div class="botonAuxiliar">
     <button
       mat-raised-button
-      (click)="crearUsuario()"
+      [routerLink]="['/colaboradores/crearUsuario']"
       style="color: #0bb0f2; border: 1px solid #0bb0f2"
     >
       <mat-icon>person_add</mat-icon>

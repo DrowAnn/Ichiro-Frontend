@@ -1,9 +1,49 @@
-<p>datos-personales works!</p>
-<button
-  mat-raised-button
-  routerLink="/colaboradores"
-  style="color: #0bb0f2; border: 1px solid #0bb0f2"
->
-  <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
-  Colaboradores
-</button>
+<div class="contenedor">
+  <div class="botonesAuxiliar">
+    <button
+      mat-raised-button
+      routerLink="/colaboradores"
+      style="color: #0bb0f2; border: 1px solid #0bb0f2"
+    >
+      <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
+      Colaboradores
+    </button>
+  </div>
+  <div class="formulario">
+    <form
+      [formGroup]="formularioColaborador"
+      style="display: flex; justify-content: space-around; flex-wrap: wrap"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>Numero de Identificación</mat-label>
+        <input formControlName="numeroIdentificacion" matInput />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Primer Nombre</mat-label>
+        <input formControlName="primerNombre" matInput />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Segundo Nombre</mat-label>
+        <input formControlName="segundoNombre" matInput />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Primer Apellido</mat-label>
+        <input formControlName="primerApellido" matInput />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Segundo Apellido</mat-label>
+        <input formControlName="segundoApellido" matInput />
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="botonesAuxiliar">
+    <button
+      mat-raised-button
+      routerLink="/colaboradores"
+      style="color: #0bb0f2; border: 1px solid #0bb0f2"
+    >
+      <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
+      Colaboradores
+    </button>
+  </div>
+</div>

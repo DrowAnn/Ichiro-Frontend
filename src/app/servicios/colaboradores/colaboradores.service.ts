@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Colaborador } from '../../colaboradores/colaborador';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,11 @@ export class ColaboradoresService {
 
   constructor(private http: HttpClient) {}
 
-  obtenerColaboradores() {
-    return this.http.get(this.url);
+  obtenerColaboradores(): Observable<Colaborador[]> {
+    return this.http.get<Colaborador[]>(this.url);
+  }
+
+  obtenerColaborador(numeroIdentificacion: string): Observable<Colaborador> {
+    return this.http.get<Colaborador>(`${this.url}/${numeroIdentificacion}`);
   }
 }
