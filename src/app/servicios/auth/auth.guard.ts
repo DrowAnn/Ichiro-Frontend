@@ -15,12 +15,10 @@ export class AuthGuard implements CanActivate {
     const rolEsperado: string[] = route.data['rolesPermitidos'];
 
     if (!this.authService.tokenExpirado()) {
-      console.log('entro');
       const infoUsuario = this.authService.obtenerInfoUsuario();
       if (infoUsuario && rolEsperado.includes(infoUsuario.rol)) {
         return true;
       } else {
-        console.log('pollo chucha');
         this.router.navigate(['error']);
         return false;
       }

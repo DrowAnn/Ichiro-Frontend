@@ -7,11 +7,22 @@
 
 .formulario {
   display: flex;
+  flex-wrap: wrap;
   width: 50vw;
+}
+
+.formulario form > * {
+  margin-bottom: 2vh;
 }
 
 .botonesAuxiliares {
   display: flex;
-  min-width: 14vw;
+  flex-direction: column;
+  width: 14vw;
   justify-content: center;
+  text-align: center;
+}
+
+.botonesAuxiliares p {
+  margin-top: 2vh;
 }

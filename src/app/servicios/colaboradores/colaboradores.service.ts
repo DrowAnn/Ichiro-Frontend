@@ -18,4 +18,18 @@ export class ColaboradoresService {
   obtenerColaborador(numeroIdentificacion: string): Observable<Colaborador> {
     return this.http.get<Colaborador>(`${this.url}/${numeroIdentificacion}`);
   }
+
+  crearColaborador(datosColaborador: Colaborador): Observable<Colaborador> {
+    return this.http.post<Colaborador>(`${this.url}`, datosColaborador);
+  }
+
+  actualizarColaborador(
+    numeroIdentificacion: string,
+    datosColaborador: Colaborador
+  ): Observable<Colaborador> {
+    return this.http.patch<Colaborador>(
+      `${this.url}/${numeroIdentificacion}`,
+      datosColaborador
+    );
+  }
 }
