@@ -25,7 +25,7 @@ export class ColaboradoresService {
 
   actualizarColaborador(
     numeroIdentificacion: string,
-    datosColaborador: Colaborador
+    datosColaborador: Partial<Colaborador>
   ): Observable<Colaborador> {
     return this.http.patch<Colaborador>(
       `${this.url}/${numeroIdentificacion}`,

@@ -1,4 +1,4 @@
-import { Colaborador } from './../colaborador';
+import { Colaborador } from '../../colaboradores/colaborador';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,11 +34,11 @@ import { CommonModule } from '@angular/common';
     CommonModule,
   ],
   providers: [ColaboradoresService, provideNativeDateAdapter()],
-  templateUrl: './datos-personales.component.html',
-  styleUrl: './datos-personales.component.scss',
+  templateUrl: './perfil-sociodemografico.component.html',
+  styleUrl: './perfil-sociodemografico.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class DatosPersonalesComponent {
+export default class PerfilSociodemograficoComponent {
   formularioColaborador: FormGroup;
   param: string = 'crearUsuario';
   mensajeRespuesta = signal<string>('');
