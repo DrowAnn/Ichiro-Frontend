@@ -1,13 +1,13 @@
-import { Colaborador } from '../../colaboradores/colaborador';
-import { Component, signal } from '@angular/core';
-import { ColaboradoresService } from '../../servicios/colaboradores/colaboradores.service';
-import { MatListModule } from '@angular/material/list';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { Router, RouterModule } from '@angular/router';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
+import { Colaborador } from '../../colaboradores/colaborador';
+import { ColaboradoresService } from '../../servicios/colaboradores/colaboradores.service';
 
 @Component({
   selector: 'app-listado',
@@ -22,8 +22,8 @@ import { Router, RouterModule } from '@angular/router';
     RouterModule,
   ],
   providers: [ColaboradoresService],
-  templateUrl: './listado.component.html',
-  styleUrl: './listado.component.scss',
+  templateUrl: './lista.component.html',
+  styleUrl: './lista.component.scss',
 })
 export default class ListadoComponent {
   listaColaboradores = signal<Colaborador[]>([]);
@@ -44,10 +44,7 @@ export default class ListadoComponent {
     'Rayos_X',
   ].sort();
 
-  constructor(
-    private readonly colaboradoresService: ColaboradoresService,
-    private router: Router
-  ) {
+  constructor(private readonly colaboradoresService: ColaboradoresService) {
     this.colaboradoresService.obtenerColaboradores().subscribe({
       next: (response: Colaborador[]) => {
         this.listaColaboradores.set(response);

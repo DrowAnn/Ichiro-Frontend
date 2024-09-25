@@ -41,8 +41,10 @@ export const routes: Routes = [
   },
   {
     path: 'perfil-sociodemografico',
-    loadComponent: () =>
-      import('./datos-sociodemograficos/datos-sociodemograficos.component'),
+    loadChildren: () =>
+      import('./datos-sociodemograficos/datos-sociodemograficos.routes').then(
+        (m) => m.routes
+      ),
     canActivate: [AuthGuard],
     data: {
       rolesPermitidos: ['Super_Usuario', 'Administrador'],

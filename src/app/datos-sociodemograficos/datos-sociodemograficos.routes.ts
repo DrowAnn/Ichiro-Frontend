@@ -9,11 +9,11 @@ export const routes: Route[] = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'listado',
+        redirectTo: 'lista',
       },
       {
-        path: 'listado',
-        loadComponent: () => import('./listado/listado.component'),
+        path: 'lista',
+        loadComponent: () => import('./lista/lista.component'),
       },
       {
         path: ':numeroIdentificacion',
