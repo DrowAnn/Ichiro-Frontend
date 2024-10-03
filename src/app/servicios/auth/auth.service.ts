@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { enviroment } from '../../../env/enviroment';
 
 interface InfoUsuario {
   nombreUsuario: string;
@@ -18,7 +19,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  private url: string = 'http://localhost:3000/auth';
+  private url: string = enviroment.backendUrl + '/auth';
 
   login(nombreUsuario: string, contrasena: string): Observable<any> {
     return this.http.post(`${this.url}/login`, {

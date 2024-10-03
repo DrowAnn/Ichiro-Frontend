@@ -1,4 +1,4 @@
-import { Colaborador } from './../colaborador';
+import { Colaborador } from '../colaboradores.dto';
 import { Component, signal } from '@angular/core';
 import { ColaboradoresService } from '../../servicios/colaboradores/colaboradores.service';
 import { MatListModule } from '@angular/material/list';

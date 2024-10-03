@@ -2,16 +2,16 @@
   <div class="botonesAuxiliares">
     <button
       mat-raised-button
-      routerLink="/colaboradores"
+      routerLink="/perfil-sociodemografico"
       style="color: #0bb0f2; border: 1px solid #0bb0f2"
     >
       <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
-      Colaboradores
+      Perfiles
     </button>
   </div>
   <div class="formulario">
     <form
-      [formGroup]="formularioColaborador"
+      [formGroup]="formularioDatosSociodemograficos"
       style="display: flex; justify-content: space-around; flex-wrap: wrap"
     >
       <mat-form-field appearance="outline">
@@ -20,76 +20,183 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Primer Nombre</mat-label>
-        <input formControlName="primerNombre" required matInput />
+        <mat-label>Estado Civil</mat-label>
+        <input formControlName="estadoCivil" matInput />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Segundo Nombre</mat-label>
-        <input formControlName="segundoNombre" matInput />
+        <mat-label>Estrato Socioeconómico</mat-label>
+        <input formControlName="estratoSocioeconomico" type="number" matInput />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Primer Apellido</mat-label>
-        <input formControlName="primerApellido" required matInput />
+        <mat-label>Tipo de Vivienda</mat-label>
+        <input formControlName="tipoVivienda" matInput />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Segundo Apellido</mat-label>
-        <input formControlName="segundoApellido" matInput />
+        <mat-label>Grupo Sanguíneo</mat-label>
+        <input formControlName="grupoSanguineo" matInput />
+      </mat-form-field>
+
+      <mat-checkbox formControlName="enfermedadesDiagnosticadasPermanentes"
+        >¿Tiene enfermedades diagnosticadas permanentes?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="medicamentoRecetadoPermanente"
+        >¿Tiene medicamentos recetados permanentes?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="fuma">¿Fuma?</mat-checkbox>
+
+      <mat-checkbox formControlName="consumeBebidasAlcoholicas"
+        >¿Consume bebidas alcoholicas?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="consumeBebidasEnergeticasConstantemente"
+        >¿Consume bebidas energéticas constantemente?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="practicaDeportivaRegular"
+        >¿Practica deporte regularmente?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="otroTrabajo"
+        >¿Tiene otro trabajo?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="laboresDomesticas"
+        >¿Realiza labores domesticas?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="recreacionDeporte"
+        >¿Recreación y deporte?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="estudio">¿Estudio?</mat-checkbox>
+
+      <mat-checkbox formControlName="otraActividad"
+        >¿Otra actividad?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="vacunacion">¿Vacunación?</mat-checkbox>
+
+      <mat-checkbox formControlName="saludOral">¿Salud Oral?</mat-checkbox>
+
+      <mat-checkbox formControlName="valoracionMedicoOcupacional"
+        >¿Valoración medico ocupacional?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="examenesLaboratorio"
+        >¿Examenes de Laboratorio?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="spaRelajacionSimilar"
+        >¿Spa, relajación o similar?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="actividadesSST"
+        >¿Actividad SST?</mat-checkbox
+      >
+
+      <mat-checkbox formControlName="ninguna">¿Ninguna?</mat-checkbox>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad de Dosis Covid19</mat-label>
+        <input formControlName="cantidadDosisCovid19" type="number" matInput />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Celular</mat-label>
-        <input formControlName="celular" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Correo</mat-label>
-        <input formControlName="correo" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Dirección</mat-label>
-        <input formControlName="direccion" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Teléfono Fijo</mat-label>
-        <input formControlName="telefonoFijo" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Nacimiento</mat-label>
+        <mat-label>Ultima aplicación</mat-label>
         <input
           matInput
-          [matDatepicker]="fechaNacimiento"
-          formControlName="fechaNacimiento"
+          [matDatepicker]="ultimaAplicacion"
+          formControlName="ultimaAplicacion"
         />
         <mat-hint>Mes/Dia/Año</mat-hint>
         <mat-datepicker-toggle
           matIconSuffix
-          [for]="fechaNacimiento"
+          [for]="ultimaAplicacion"
         ></mat-datepicker-toggle>
-        <mat-datepicker #fechaNacimiento> </mat-datepicker>
+        <mat-datepicker #ultimaAplicacion> </mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Fecha de Ingreso</mat-label>
+        <mat-label>Nombre conyugue</mat-label>
+        <input formControlName="nombreConyuge" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Edad conyugue</mat-label>
+        <input formControlName="edadConyuge" type="number" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono conyugue</mat-label>
+        <input formControlName="telefonoConyuge" matInput />
+      </mat-form-field>
+
+      <mat-checkbox formControlName="tieneHijos">¿Tiene hijos?</mat-checkbox>
+
+      <mat-form-field appearance="outline">
+        <mat-label>¿Cuantos hijos tiene?</mat-label>
+        <input formControlName="cuantosHijosTiene" type="number" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>¿Cuantas personas componen el núcleo familiar?</mat-label>
         <input
+          formControlName="personasNucleoFamiliar"
+          type="number"
           matInput
-          [matDatepicker]="fechaIngreso"
-          formControlName="fechaIngreso"
         />
-        <mat-hint>Mes/Dia/Año</mat-hint>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="fechaIngreso"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #fechaIngreso> </mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>¿Cuantas personas dependen económicamente?</mat-label>
+        <input
+          formControlName="personasDependientesEconomicamente"
+          type="number"
+          matInput
+        />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
+        <mat-label>Parentesco de los dependientes</mat-label>
+        <input formControlName="parentescos" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>EPS</mat-label>
+        <input formControlName="eps" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fondo de pensión</mat-label>
+        <input formControlName="fondoPension" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>ARL</mat-label>
+        <input formControlName="arl" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre contacto de emergencia</mat-label>
+        <input formControlName="nombreContactoEmergencia" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono contacto de emergencia</mat-label>
+        <input formControlName="telefonoContactoEmergencia" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Parentesco contacto de emergencia</mat-label>
+        <input formControlName="parentescoContactoEmergencia" matInput />
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="outline">
         <mat-label>Género</mat-label>
         <mat-select formControlName="genero">
           <mat-option value="Masculino">Masculino</mat-option>
@@ -182,7 +289,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-checkbox formControlName="activo">Activo</mat-checkbox>
+      <mat-checkbox formControlName="activo">Activo</mat-checkbox> -->
     </form>
   </div>
   <div class="botonesAuxiliares">
@@ -203,15 +310,6 @@
     >
       <mat-icon style="font-weight: 600">sync</mat-icon>
       Actualizar
-    </button>
-    } @if (param !== 'crearUsuario') {
-    <button
-      mat-raised-button
-      (click)="retirarColaborador()"
-      style="color: #0bb0f2; border: 1px solid #0bb0f2"
-    >
-      <mat-icon style="font-weight: 500; color: red">person_remove</mat-icon>
-      Retirar
     </button>
     } @if (mensajeRespuesta() !== '') {
     <p [ngStyle]="estilosMensaje()">{{ mensajeRespuesta() }}</p>

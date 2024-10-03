@@ -1,21 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DatosSociodemograficos } from '../../datos-sociodemograficos/datos-sociodemograficos';
+import { DatosSociodemograficos } from '../../datos-sociodemograficos/datos-sociodemograficos.dto';
+import { enviroment } from '../../../env/enviroment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ColaboradoresService {
-  url = 'http://localhost:3000/datos-sociodemograficos';
+export class DatosSociodemograficosService {
+  url = enviroment.backendUrl + '/datos-sociodemograficos';
 
   constructor(private http: HttpClient) {}
 
-  obtenerColaboradores(): Observable<DatosSociodemograficos[]> {
+  obtenerTodosDatosSociodemograficos(): Observable<DatosSociodemograficos[]> {
     return this.http.get<DatosSociodemograficos[]>(this.url);
   }
 
-  obtenerColaborador(
+  obtenerDatosSociodemograficos(
     numeroIdentificacion: string
   ): Observable<DatosSociodemograficos> {
     return this.http.get<DatosSociodemograficos>(
@@ -23,7 +24,7 @@ export class ColaboradoresService {
     );
   }
 
-  crearColaborador(
+  crearDatosSociodemograficos(
     datosColaborador: DatosSociodemograficos
   ): Observable<DatosSociodemograficos> {
     return this.http.post<DatosSociodemograficos>(
@@ -32,7 +33,7 @@ export class ColaboradoresService {
     );
   }
 
-  actualizarColaborador(
+  actualizarDatosSociodemograficos(
     numeroIdentificacion: string,
     datosColaborador: Partial<DatosSociodemograficos>
   ): Observable<DatosSociodemograficos> {

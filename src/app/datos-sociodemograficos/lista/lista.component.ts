@@ -6,7 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
-import { Colaborador } from '../../colaboradores/colaborador';
+import { Colaborador } from '../../colaboradores/colaboradores.dto';
 import { ColaboradoresService } from '../../servicios/colaboradores/colaboradores.service';
 
 @Component({

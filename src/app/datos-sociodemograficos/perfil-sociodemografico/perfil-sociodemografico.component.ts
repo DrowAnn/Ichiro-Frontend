@@ -1,4 +1,3 @@
-import { Colaborador } from '../../colaboradores/colaborador';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +16,8 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
+import { DatosSociodemograficosService } from '../../servicios/datos-sociodemograficos/datos-sociodemograficos.service';
+import { DatosSociodemograficos } from '../datos-sociodemograficos.dto';
 
 @Component({
   selector: 'app-datos-personales',
@@ -33,108 +34,150 @@ import { CommonModule } from '@angular/common';
     MatCheckboxModule,
     CommonModule,
   ],
-  providers: [ColaboradoresService, provideNativeDateAdapter()],
+  providers: [
+    ColaboradoresService,
+    DatosSociodemograficosService,
+    provideNativeDateAdapter(),
+  ],
   templateUrl: './perfil-sociodemografico.component.html',
   styleUrl: './perfil-sociodemografico.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PerfilSociodemograficoComponent {
-  formularioColaborador: FormGroup;
+  formularioDatosSociodemograficos: FormGroup;
   param: string = 'crearUsuario';
   mensajeRespuesta = signal<string>('');
   estilosMensaje = signal<any>({});
 
   constructor(
     private readonly colaboradoresService: ColaboradoresService,
+    private readonly datosSociodemograficosService: DatosSociodemograficosService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router
   ) {
-    this.formularioColaborador = this.fb.group({
+    this.formularioDatosSociodemograficos = this.fb.group({
       numeroIdentificacion: ['', [Validators.required]],
-      primerNombre: ['', [Validators.required]],
-      segundoNombre: [''],
-      primerApellido: ['', [Validators.required]],
-      segundoApellido: [''],
-      celular: [''],
-      correo: [''],
-      direccion: [''],
-      telefonoFijo: [''],
-      fechaNacimiento: [null],
-      fechaIngreso: [null],
-      genero: [''],
-      cargo: ['', [Validators.required]],
-      area: [null, [Validators.required]],
-      riesgoARL: [0],
-      tipoContrato: [''],
-      profesion: [''],
-      escolaridad: [''],
-      experienciaAnos: [0],
-      salarioBase: [0.0],
-      horasMensualesContratadas: [0],
-      formaPago: [''],
-      activo: [true],
+      estadoCivil: [null],
+      estratoSocioeconomico: [null],
+      tipoVivienda: [null],
+      grupoSanguineo: [null],
+      enfermedadesDiagnosticadasPermanentes: [false],
+      tiposEnfermedadesPermanentes: [null],
+      medicamentoRecetadoPermanente: [false],
+      tiposMedicamentosPermanentes: [null],
+      fuma: [false],
+      consumeBebidasAlcoholicas: [false],
+      consumeBebidasEnergeticasConstantemente: [false],
+      practicaDeportivaRegular: [false],
+      otroTrabajo: [false],
+      laboresDomesticas: [false],
+      recreacionDeporte: [false],
+      estudio: [false],
+      otraActividad: [false],
+      vacunacion: [false],
+      saludOral: [false],
+      valoracionMedicoOcupacional: [false],
+      examenesLaboratorio: [false],
+      spaRelajacionSimilar: [false],
+      actividadesSST: [false],
+      ninguna: [false],
+      cantidadDosisCovid19: [null],
+      ultimaAplicacion: [null],
+      nombreConyuge: [null],
+      edadConyuge: [null],
+      telefonoConyuge: [null],
+      tieneHijos: [false],
+      cuantosHijosTiene: [null],
+      datosHijos: [null],
+      personasNucleoFamiliar: [null],
+      personasDependientesEconomicamente: [null],
+      parentescos: [null],
+      eps: [null],
+      fondoPension: [null],
+      arl: [null],
+      nombreContactoEmergencia: [null],
+      telefonoContactoEmergencia: [null],
+      parentescoContactoEmergencia: [null],
     });
 
     this.param = this.route.snapshot.paramMap.get('numeroIdentificacion') ?? '';
     if (this.param && this.param !== 'crearUsuario') {
-      this.colaboradoresService.obtenerColaborador(this.param).subscribe({
-        next: (response: Colaborador) => {
-          if (response.fechaNacimiento) {
-            let fn = new Date(response.fechaNacimiento ?? '');
-            response.fechaNacimiento = new Date(
-              fn.setHours(fn.getHours() + 10)
-            );
-          }
-          if (response.fechaIngreso) {
-            let fi = new Date(response.fechaIngreso ?? '');
-            response.fechaIngreso = new Date(fi.setHours(fi.getHours() + 10));
-          }
-          this.formularioColaborador.patchValue(response);
-        },
-      });
+      this.datosSociodemograficosService
+        .obtenerDatosSociodemograficos(this.param)
+        .subscribe({
+          next: (response: DatosSociodemograficos) => {
+            console.log(response);
+            if (response) {
+              if (response.ultimaAplicacion) {
+                let ua = new Date(response.ultimaAplicacion ?? '');
+                response.ultimaAplicacion = new Date(
+                  ua.setHours(ua.getHours() + 10)
+                );
+              }
+              this.formularioDatosSociodemograficos.patchValue(response);
+            } else {
+              this.formularioDatosSociodemograficos.patchValue({
+                numeroIdentificacion: this.param,
+              });
+              this.param = 'crearUsuario';
+              this.mensajeRespuesta.set(
+                'El Usuario NO tiene creado su Perfil Sociodemografico'
+              );
+            }
+          },
+        });
     }
   }
 
   enviarInformacion(): void {
-    if (this.formularioColaborador.valid) {
-      const datosColaborador: Colaborador = this.formularioColaborador.value;
-      datosColaborador.fechaNacimiento = new Date(
-        datosColaborador.fechaNacimiento?.toISOString() ?? ''
-      );
-      datosColaborador.fechaIngreso = new Date(
-        datosColaborador.fechaIngreso?.toISOString() ?? ''
+    if (this.formularioDatosSociodemograficos.valid) {
+      const datosSociodemograficos: DatosSociodemograficos =
+        this.formularioDatosSociodemograficos.value;
+      datosSociodemograficos.ultimaAplicacion = new Date(
+        datosSociodemograficos.ultimaAplicacion?.toISOString() ?? ''
       );
       if (this.param === 'crearUsuario') {
-        this.colaboradoresService.crearColaborador(datosColaborador).subscribe({
-          next: (response) => {
-            if (response) {
-              this.mensajeRespuesta.set('Colaborador creado con exito');
-              this.estilosMensaje.set({
-                color: 'rgb(0, 200, 0)',
-              });
-            }
-          },
-          error: (error) => {
-            this.mensajeRespuesta.set('No se pudo crear el colaborador');
-            this.estilosMensaje.set({ color: 'red' });
-            console.log(error);
-          },
-        });
-      } else {
-        this.colaboradoresService
-          .actualizarColaborador(this.param, datosColaborador)
+        this.datosSociodemograficosService
+          .crearDatosSociodemograficos(datosSociodemograficos)
           .subscribe({
             next: (response) => {
               if (response) {
-                this.mensajeRespuesta.set('Colaborador actualizado con exito');
+                this.mensajeRespuesta.set(
+                  'Perfil sociodemográfico creado con exito'
+                );
                 this.estilosMensaje.set({
                   color: 'rgb(0, 200, 0)',
                 });
               }
             },
             error: (error) => {
-              this.mensajeRespuesta.set('No se pudo actualizar el colaborador');
+              this.mensajeRespuesta.set(
+                'No se pudo crear el perfil sociodemográfico'
+              );
+              this.estilosMensaje.set({ color: 'red' });
+              console.log(error);
+            },
+          });
+        this.router.navigate(['/perfil-sociodemografico']);
+      } else {
+        this.datosSociodemograficosService
+          .actualizarDatosSociodemograficos(this.param, datosSociodemograficos)
+          .subscribe({
+            next: (response) => {
+              if (response) {
+                this.mensajeRespuesta.set(
+                  'Perfil sociodemográfico actualizado con exito'
+                );
+                this.estilosMensaje.set({
+                  color: 'rgb(0, 200, 0)',
+                });
+              }
+            },
+            error: (error) => {
+              this.mensajeRespuesta.set(
+                'No se pudo actualizar el perfil sociodemográfico'
+              );
               this.estilosMensaje.set({ color: 'red' });
               console.log(error);
             },
@@ -144,28 +187,5 @@ export default class PerfilSociodemograficoComponent {
     this.mensajeRespuesta.set(
       'Error en la solicitud, Faltan campos requeridos'
     );
-  }
-
-  retirarColaborador(): void {
-    this.colaboradoresService
-      .actualizarColaborador(this.param, { activo: false })
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.mensajeRespuesta.set('Colaborador retirado con exito');
-            this.estilosMensaje.set({
-              color: 'rgb(0, 200, 0)',
-            });
-            setTimeout(() => {
-              this.router.navigate(['/colaboradores']);
-            }, 1000);
-          }
-        },
-        error: (error) => {
-          this.mensajeRespuesta.set('No se pudo retirar el colaborador');
-          this.estilosMensaje.set({ color: 'red' });
-          console.log(error);
-        },
-      });
   }
 }

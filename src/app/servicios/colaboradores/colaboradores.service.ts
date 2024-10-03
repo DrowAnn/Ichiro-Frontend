@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Colaborador } from '../../colaboradores/colaborador';
+import { Colaborador } from '../../colaboradores/colaboradores.dto';
+import { enviroment } from '../../../env/enviroment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ColaboradoresService {
-  url = 'http://localhost:3000/colaboradores';
+  private url = enviroment.backendUrl + '/colaboradores';
 
   constructor(private http: HttpClient) {}
 
