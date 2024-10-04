@@ -20,6 +20,14 @@ export const routes: Route[] = [
         loadComponent: () =>
           import('./perfil-sociodemografico/perfil-sociodemografico.component'),
       },
+      {
+        path: ':numeroIdentificacion/hijos',
+        loadComponent: () => import('./hijos/hijos.component'),
+      },
+      {
+        path: ':numeroIdentificacion/hijos/:identificacionHijo',
+        loadComponent: () => import('./datos-hijos/datos-hijos.component'),
+      },
     ],
   },
 ];

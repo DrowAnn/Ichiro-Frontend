@@ -17,7 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { DatosSociodemograficosService } from '../../servicios/datos-sociodemograficos/datos-sociodemograficos.service';
-import { DatosSociodemograficos } from '../datos-sociodemograficos.dto';
+import { DatosSociodemograficosDto } from '../datos-sociodemograficos.dto';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-datos-personales',
@@ -33,6 +34,7 @@ import { DatosSociodemograficos } from '../datos-sociodemograficos.dto';
     MatSelectModule,
     MatCheckboxModule,
     CommonModule,
+    MatStepperModule,
   ],
   providers: [
     ColaboradoresService,
@@ -106,7 +108,7 @@ export default class PerfilSociodemograficoComponent {
       this.datosSociodemograficosService
         .obtenerDatosSociodemograficos(this.param)
         .subscribe({
-          next: (response: DatosSociodemograficos) => {
+          next: (response: DatosSociodemograficosDto) => {
             console.log(response);
             if (response) {
               if (response.ultimaAplicacion) {
@@ -132,7 +134,7 @@ export default class PerfilSociodemograficoComponent {
 
   enviarInformacion(): void {
     if (this.formularioDatosSociodemograficos.valid) {
-      const datosSociodemograficos: DatosSociodemograficos =
+      const datosSociodemograficos: DatosSociodemograficosDto =
         this.formularioDatosSociodemograficos.value;
       datosSociodemograficos.ultimaAplicacion = new Date(
         datosSociodemograficos.ultimaAplicacion?.toISOString() ?? ''

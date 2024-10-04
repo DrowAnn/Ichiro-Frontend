@@ -1,13 +1,13 @@
-export interface DatosSociodemograficos {
+export interface DatosSociodemograficosDto {
   numeroIdentificacion: string;
   estadoCivil?: string;
   estratoSocioeconomico?: number;
   tipoVivienda?: string;
   grupoSanguineo?: string;
   enfermedadesDiagnosticadasPermanentes?: boolean;
-  tiposEnfermedadesPermanentes?: object;
+  tiposEnfermedadesPermanentes?: string;
   medicamentoRecetadoPermanente?: boolean;
-  tiposMedicamentosPermanentes?: object;
+  tiposMedicamentosPermanentes?: string;
   fuma?: boolean;
   consumeBebidasAlcoholicas?: boolean;
   consumeBebidasEnergeticasConstantemente?: boolean;

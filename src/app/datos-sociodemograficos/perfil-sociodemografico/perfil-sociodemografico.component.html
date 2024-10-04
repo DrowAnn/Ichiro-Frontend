@@ -10,286 +10,288 @@
     </button>
   </div>
   <div class="formulario">
-    <form
-      [formGroup]="formularioDatosSociodemograficos"
-      style="display: flex; justify-content: space-around; flex-wrap: wrap"
-    >
-      <mat-form-field appearance="outline">
-        <mat-label>Numero de Identificación</mat-label>
-        <input formControlName="numeroIdentificacion" required matInput />
-      </mat-form-field>
+    <form [formGroup]="formularioDatosSociodemograficos" style="width: 100%">
+      <mat-stepper orientation="vertical" [linear]="false" #stepper>
+        <!-- Primer paso -->
+        <mat-step>
+          <ng-template matStepLabel>Datos de Vivienda y Contacto</ng-template>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Estado Civil</mat-label>
-        <input formControlName="estadoCivil" matInput />
-      </mat-form-field>
+          <div class="stepBox">
+            <mat-form-field appearance="outline" style="margin-top: 1vh">
+              <mat-label>Numero de Identificación</mat-label>
+              <input formControlName="numeroIdentificacion" required matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Estrato Socioeconómico</mat-label>
-        <input formControlName="estratoSocioeconomico" type="number" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Estado Civil</mat-label>
+              <input formControlName="estadoCivil" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Tipo de Vivienda</mat-label>
-        <input formControlName="tipoVivienda" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Estrato Socioeconómico</mat-label>
+              <input
+                formControlName="estratoSocioeconomico"
+                type="number"
+                matInput
+              />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Grupo Sanguíneo</mat-label>
-        <input formControlName="grupoSanguineo" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo de Vivienda</mat-label>
+              <mat-select formControlName="tipoVivienda">
+                <mat-option value="Propia">Propia</mat-option>
+                <mat-option value="Arrendada">Arrendada</mat-option>
+                <mat-option value="Familiar">Familiar</mat-option>
+                <mat-option value="Compartida">Compartida</mat-option>
+                <mat-option value="Otro">Otro</mat-option>
+                <mat-option>--</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </mat-step>
+        <!-- Segundo paso -->
+        <mat-step>
+          <ng-template matStepLabel>Estado de Salud</ng-template>
+          <div class="stepBox">
+            <mat-form-field appearance="outline" style="margin-top: 1vh">
+              <mat-label>Grupo Sanguíneo</mat-label>
+              <mat-select formControlName="grupoSanguineo">
+                <mat-option value="O+">O+</mat-option>
+                <mat-option value="O-">O-</mat-option>
+                <mat-option value="A+">A+</mat-option>
+                <mat-option value="A-">A-</mat-option>
+                <mat-option value="B+">B+</mat-option>
+                <mat-option value="B-">B-</mat-option>
+                <mat-option value="AB+">AB+</mat-option>
+                <mat-option value="AB-">AB-</mat-option>
+                <mat-option>--</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-      <mat-checkbox formControlName="enfermedadesDiagnosticadasPermanentes"
-        >¿Tiene enfermedades diagnosticadas permanentes?</mat-checkbox
-      >
+            <mat-checkbox
+              formControlName="enfermedadesDiagnosticadasPermanentes"
+              style="padding-bottom: 2.5vh"
+              >¿Tiene enfermedades diagnosticadas permanentes?</mat-checkbox
+            >
 
-      <mat-checkbox formControlName="medicamentoRecetadoPermanente"
-        >¿Tiene medicamentos recetados permanentes?</mat-checkbox
-      >
+            <mat-form-field appearance="outline">
+              <mat-label>Tipos de enfermedades permanentes</mat-label>
+              <input formControlName="tiposEnfermedadesPermanentes" matInput />
+            </mat-form-field>
 
-      <mat-checkbox formControlName="fuma">¿Fuma?</mat-checkbox>
+            <mat-checkbox
+              formControlName="medicamentoRecetadoPermanente"
+              style="padding-bottom: 2.5vh"
+              >¿Tiene medicamentos recetados permanentes?</mat-checkbox
+            >
 
-      <mat-checkbox formControlName="consumeBebidasAlcoholicas"
-        >¿Consume bebidas alcoholicas?</mat-checkbox
-      >
+            <mat-form-field appearance="outline">
+              <mat-label>Tipos de medicamentos permanentes</mat-label>
+              <input formControlName="tiposMedicamentosPermanentes" matInput />
+            </mat-form-field>
 
-      <mat-checkbox formControlName="consumeBebidasEnergeticasConstantemente"
-        >¿Consume bebidas energéticas constantemente?</mat-checkbox
-      >
+            <mat-checkbox formControlName="fuma">¿Fuma?</mat-checkbox>
 
-      <mat-checkbox formControlName="practicaDeportivaRegular"
-        >¿Practica deporte regularmente?</mat-checkbox
-      >
+            <mat-checkbox formControlName="consumeBebidasAlcoholicas"
+              >¿Consume bebidas alcoholicas?</mat-checkbox
+            >
 
-      <mat-checkbox formControlName="otroTrabajo"
-        >¿Tiene otro trabajo?</mat-checkbox
-      >
+            <mat-checkbox
+              formControlName="consumeBebidasEnergeticasConstantemente"
+              >¿Consume bebidas energéticas constantemente?</mat-checkbox
+            >
 
-      <mat-checkbox formControlName="laboresDomesticas"
-        >¿Realiza labores domesticas?</mat-checkbox
-      >
-
-      <mat-checkbox formControlName="recreacionDeporte"
-        >¿Recreación y deporte?</mat-checkbox
-      >
-
-      <mat-checkbox formControlName="estudio">¿Estudio?</mat-checkbox>
-
-      <mat-checkbox formControlName="otraActividad"
-        >¿Otra actividad?</mat-checkbox
-      >
-
-      <mat-checkbox formControlName="vacunacion">¿Vacunación?</mat-checkbox>
-
-      <mat-checkbox formControlName="saludOral">¿Salud Oral?</mat-checkbox>
-
-      <mat-checkbox formControlName="valoracionMedicoOcupacional"
-        >¿Valoración medico ocupacional?</mat-checkbox
-      >
-
-      <mat-checkbox formControlName="examenesLaboratorio"
-        >¿Examenes de Laboratorio?</mat-checkbox
-      >
-
-      <mat-checkbox formControlName="spaRelajacionSimilar"
-        >¿Spa, relajación o similar?</mat-checkbox
-      >
-
-      <mat-checkbox formControlName="actividadesSST"
-        >¿Actividad SST?</mat-checkbox
-      >
-
-      <mat-checkbox formControlName="ninguna">¿Ninguna?</mat-checkbox>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Cantidad de Dosis Covid19</mat-label>
-        <input formControlName="cantidadDosisCovid19" type="number" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Ultima aplicación</mat-label>
-        <input
-          matInput
-          [matDatepicker]="ultimaAplicacion"
-          formControlName="ultimaAplicacion"
-        />
-        <mat-hint>Mes/Dia/Año</mat-hint>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="ultimaAplicacion"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #ultimaAplicacion> </mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre conyugue</mat-label>
-        <input formControlName="nombreConyuge" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Edad conyugue</mat-label>
-        <input formControlName="edadConyuge" type="number" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Teléfono conyugue</mat-label>
-        <input formControlName="telefonoConyuge" matInput />
-      </mat-form-field>
-
-      <mat-checkbox formControlName="tieneHijos">¿Tiene hijos?</mat-checkbox>
-
-      <mat-form-field appearance="outline">
-        <mat-label>¿Cuantos hijos tiene?</mat-label>
-        <input formControlName="cuantosHijosTiene" type="number" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>¿Cuantas personas componen el núcleo familiar?</mat-label>
-        <input
-          formControlName="personasNucleoFamiliar"
-          type="number"
-          matInput
-        />
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>¿Cuantas personas dependen económicamente?</mat-label>
-        <input
-          formControlName="personasDependientesEconomicamente"
-          type="number"
-          matInput
-        />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Parentesco de los dependientes</mat-label>
-        <input formControlName="parentescos" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>EPS</mat-label>
-        <input formControlName="eps" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Fondo de pensión</mat-label>
-        <input formControlName="fondoPension" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>ARL</mat-label>
-        <input formControlName="arl" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre contacto de emergencia</mat-label>
-        <input formControlName="nombreContactoEmergencia" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Teléfono contacto de emergencia</mat-label>
-        <input formControlName="telefonoContactoEmergencia" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Parentesco contacto de emergencia</mat-label>
-        <input formControlName="parentescoContactoEmergencia" matInput />
-      </mat-form-field>
-
-      <!-- <mat-form-field appearance="outline">
-        <mat-label>Género</mat-label>
-        <mat-select formControlName="genero">
-          <mat-option value="Masculino">Masculino</mat-option>
-          <mat-option value="Femenino">Femenino</mat-option>
-          <mat-option value="Otro">Otro</mat-option>
-          <mat-option>--</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Cargo</mat-label>
-        <input formControlName="cargo" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Área</mat-label>
-        <mat-select formControlName="area">
-          <mat-option value="Administrativo">Administrativo</mat-option>
-          <mat-option value="Asistencial">Asistencial</mat-option>
-          <mat-option value="Comercial">Comercial</mat-option>
-          <mat-option value="Estetica">Estética</mat-option>
-          <mat-option value="Farmacia">Farmacia</mat-option>
-          <mat-option value="Financiero">Financiero</mat-option>
-          <mat-option value="Hospitalizacion">Hospitalización</mat-option>
-          <mat-option value="Instrumental_Y_Central_De_Lavado"
-            >Instrumental Y Central De Lavado</mat-option
+            <mat-checkbox formControlName="practicaDeportivaRegular"
+              >¿Practica deporte regularmente?</mat-checkbox
+            >
+          </div>
+        </mat-step>
+        <!-- Tercer paso -->
+        <mat-step>
+          <ng-template matStepLabel
+            >Uso del tiempo libre fuera de la Empresa</ng-template
           >
-          <mat-option value="Mantenimiento">Mantenimiento</mat-option>
-          <mat-option value="Medicina_General">Medicina General</mat-option>
-          <mat-option value="Programacion">Programación</mat-option>
-          <mat-option value="Rayos_X">Rayos X</mat-option>
-          <mat-option value="Recepcion">Recepción</mat-option>
-          <mat-option value="Servicios_Generales"
-            >Servicios Generales</mat-option
+          <div class="stepBox">
+            <mat-checkbox formControlName="otroTrabajo"
+              >¿Tiene otro trabajo?</mat-checkbox
+            >
+
+            <mat-checkbox formControlName="laboresDomesticas"
+              >¿Realiza labores domesticas?</mat-checkbox
+            >
+
+            <mat-checkbox formControlName="recreacionDeporte"
+              >¿Recreación y deporte?</mat-checkbox
+            >
+
+            <mat-checkbox formControlName="estudio">¿Estudio?</mat-checkbox>
+
+            <mat-checkbox formControlName="otraActividad"
+              >¿Otra actividad?</mat-checkbox
+            >
+          </div>
+        </mat-step>
+        <!-- Cuarto paso -->
+        <mat-step>
+          <ng-template matStepLabel
+            >Participación en actividades realizadas por la Empresa<br />para la
+            promoción de la salud</ng-template
           >
-          <mat-option>--</mat-option>
-        </mat-select>
-      </mat-form-field>
+          <div class="stepBox">
+            <mat-checkbox formControlName="vacunacion">Vacunación</mat-checkbox>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Riesgo ARL</mat-label>
-        <input formControlName="riesgoARL" type="number" matInput />
-      </mat-form-field>
+            <mat-checkbox formControlName="saludOral">Salud Oral</mat-checkbox>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Tipo de Contrato</mat-label>
-        <mat-select formControlName="tipoContrato">
-          <mat-option value="Termino Fijo">Termino Fijo</mat-option>
-          <mat-option value="Indefinido">Indefinido</mat-option>
-          <mat-option value="Aprendizaje">Aprendizaje</mat-option>
-          <mat-option>--</mat-option>
-        </mat-select>
-      </mat-form-field>
+            <mat-checkbox formControlName="valoracionMedicoOcupacional"
+              >Valoración medico ocupacional</mat-checkbox
+            >
 
-      <mat-form-field appearance="outline">
-        <mat-label>Profesión</mat-label>
-        <input formControlName="profesion" matInput />
-      </mat-form-field>
+            <mat-checkbox formControlName="examenesLaboratorio"
+              >Examenes de Laboratorio</mat-checkbox
+            >
 
-      <mat-form-field appearance="outline">
-        <mat-label>Escolaridad</mat-label>
-        <input formControlName="escolaridad" matInput />
-      </mat-form-field>
+            <mat-checkbox formControlName="spaRelajacionSimilar"
+              >Spa, relajación o similar</mat-checkbox
+            >
 
-      <mat-form-field appearance="outline">
-        <mat-label>Experiencia en Años</mat-label>
-        <input formControlName="experienciaAnos" type="number" matInput />
-      </mat-form-field>
+            <mat-checkbox formControlName="actividadesSST"
+              >Actividad SST</mat-checkbox
+            >
 
-      <mat-form-field appearance="outline">
-        <mat-label>Salario Base</mat-label>
-        <input formControlName="salarioBase" type="number" matInput />
-      </mat-form-field>
+            <mat-checkbox
+              formControlName="ninguna"
+              style="padding-bottom: 2.5vh"
+              >Ninguna</mat-checkbox
+            >
 
-      <mat-form-field appearance="outline">
-        <mat-label>Horas Mensuales Contratadas</mat-label>
-        <input
-          formControlName="horasMensualesContratadas"
-          type="number"
-          matInput
-        />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Cantidad de Dosis Covid19</mat-label>
+              <input
+                formControlName="cantidadDosisCovid19"
+                type="number"
+                matInput
+              />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Forma de Pago</mat-label>
-        <mat-select formControlName="formaPago">
-          <mat-option value="Mensual">Mensual</mat-option>
-          <mat-option value="Quincenal">Quincenal</mat-option>
-          <mat-option>--</mat-option>
-        </mat-select>
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Ultima aplicación</mat-label>
+              <input
+                matInput
+                [matDatepicker]="ultimaAplicacion"
+                formControlName="ultimaAplicacion"
+              />
+              <mat-hint>Mes/Dia/Año</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="ultimaAplicacion"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #ultimaAplicacion> </mat-datepicker>
+            </mat-form-field>
+          </div>
+        </mat-step>
+        <!-- Quinto paso -->
+        <mat-step>
+          <ng-template matStepLabel
+            >Composición del nucleo familiar</ng-template
+          >
+          <div class="stepBox">
+            <mat-form-field appearance="outline" style="padding-top: 1vh">
+              <mat-label>Nombre conyugue</mat-label>
+              <input formControlName="nombreConyuge" matInput />
+            </mat-form-field>
 
-      <mat-checkbox formControlName="activo">Activo</mat-checkbox> -->
+            <mat-form-field appearance="outline">
+              <mat-label>Edad conyugue</mat-label>
+              <input formControlName="edadConyuge" type="number" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono conyugue</mat-label>
+              <input formControlName="telefonoConyuge" matInput />
+            </mat-form-field>
+
+            <mat-checkbox
+              formControlName="tieneHijos"
+              style="padding-bottom: 2.5vh"
+              >¿Tiene hijos?</mat-checkbox
+            >
+
+            <mat-form-field appearance="outline">
+              <mat-label>¿Cuantos hijos tiene?</mat-label>
+              <input
+                formControlName="cuantosHijosTiene"
+                type="number"
+                matInput
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label
+                >¿Cuantas personas componen el núcleo familiar?</mat-label
+              >
+              <input
+                formControlName="personasNucleoFamiliar"
+                type="number"
+                matInput
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>¿Cuantas personas dependen económicamente?</mat-label>
+              <input
+                formControlName="personasDependientesEconomicamente"
+                type="number"
+                matInput
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Parentesco de los dependientes</mat-label>
+              <input formControlName="parentescos" matInput />
+            </mat-form-field>
+          </div>
+        </mat-step>
+        <!-- Sexto paso -->
+        <mat-step>
+          <ng-template matStepLabel>Seguridad social</ng-template>
+          <div class="stepBox">
+            <mat-form-field appearance="outline" style="padding-top: 1vh">
+              <mat-label>EPS</mat-label>
+              <input formControlName="eps" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Fondo de pensión</mat-label>
+              <input formControlName="fondoPension" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>ARL</mat-label>
+              <input formControlName="arl" matInput />
+            </mat-form-field>
+          </div>
+        </mat-step>
+        <!-- Septimo paso -->
+        <mat-step>
+          <ng-template matStepLabel>Contacto de emergencia</ng-template>
+          <div class="stepBox">
+            <mat-form-field appearance="outline" style="padding-top: 1vh">
+              <mat-label>Nombre contacto de emergencia</mat-label>
+              <input formControlName="nombreContactoEmergencia" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono contacto de emergencia</mat-label>
+              <input formControlName="telefonoContactoEmergencia" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Parentesco contacto de emergencia</mat-label>
+              <input formControlName="parentescoContactoEmergencia" matInput />
+            </mat-form-field>
+          </div>
+        </mat-step>
+      </mat-stepper>
     </form>
   </div>
   <div class="botonesAuxiliares">
