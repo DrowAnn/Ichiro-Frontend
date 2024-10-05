@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { ColaboradoresService } from '../../servicios/colaboradores/colaboradores.service';
 import {
   FormBuilder,
   FormGroup,
@@ -36,27 +35,21 @@ import { MatStepperModule } from '@angular/material/stepper';
     CommonModule,
     MatStepperModule,
   ],
-  providers: [
-    ColaboradoresService,
-    DatosSociodemograficosService,
-    provideNativeDateAdapter(),
-  ],
+  providers: [DatosSociodemograficosService, provideNativeDateAdapter()],
   templateUrl: './perfil-sociodemografico.component.html',
   styleUrl: './perfil-sociodemografico.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PerfilSociodemograficoComponent {
   formularioDatosSociodemograficos: FormGroup;
-  param: string = 'crearUsuario';
+  param = signal<string>('crearUsuario');
   mensajeRespuesta = signal<string>('');
   estilosMensaje = signal<any>({});
 
   constructor(
-    private readonly colaboradoresService: ColaboradoresService,
     private readonly datosSociodemograficosService: DatosSociodemograficosService,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private router: Router
+    private fb: FormBuilder
   ) {
     this.formularioDatosSociodemograficos = this.fb.group({
       numeroIdentificacion: ['', [Validators.required]],
@@ -91,7 +84,6 @@ export default class PerfilSociodemograficoComponent {
       telefonoConyuge: [null],
       tieneHijos: [false],
       cuantosHijosTiene: [null],
-      datosHijos: [null],
       personasNucleoFamiliar: [null],
       personasDependientesEconomicamente: [null],
       parentescos: [null],
@@ -103,10 +95,12 @@ export default class PerfilSociodemograficoComponent {
       parentescoContactoEmergencia: [null],
     });
 
-    this.param = this.route.snapshot.paramMap.get('numeroIdentificacion') ?? '';
-    if (this.param && this.param !== 'crearUsuario') {
+    this.param.set(
+      this.route.snapshot.paramMap.get('numeroIdentificacion') ?? ''
+    );
+    if (this.param() && this.param() !== 'crearUsuario') {
       this.datosSociodemograficosService
-        .obtenerDatosSociodemograficos(this.param)
+        .obtenerDatosSociodemograficos(this.param())
         .subscribe({
           next: (response: DatosSociodemograficosDto) => {
             console.log(response);
@@ -120,9 +114,9 @@ export default class PerfilSociodemograficoComponent {
               this.formularioDatosSociodemograficos.patchValue(response);
             } else {
               this.formularioDatosSociodemograficos.patchValue({
-                numeroIdentificacion: this.param,
+                numeroIdentificacion: this.param(),
               });
-              this.param = 'crearUsuario';
+              this.param.set('crearUsuario');
               this.mensajeRespuesta.set(
                 'El Usuario NO tiene creado su Perfil Sociodemografico'
               );
@@ -139,12 +133,13 @@ export default class PerfilSociodemograficoComponent {
       datosSociodemograficos.ultimaAplicacion = new Date(
         datosSociodemograficos.ultimaAplicacion?.toISOString() ?? ''
       );
-      if (this.param === 'crearUsuario') {
+      if (this.param() === 'crearUsuario') {
         this.datosSociodemograficosService
           .crearDatosSociodemograficos(datosSociodemograficos)
           .subscribe({
             next: (response) => {
               if (response) {
+                this.param.set(response.numeroIdentificacion);
                 this.mensajeRespuesta.set(
                   'Perfil sociodemográfico creado con exito'
                 );
@@ -161,10 +156,12 @@ export default class PerfilSociodemograficoComponent {
               console.log(error);
             },
           });
-        this.router.navigate(['/perfil-sociodemografico']);
       } else {
         this.datosSociodemograficosService
-          .actualizarDatosSociodemograficos(this.param, datosSociodemograficos)
+          .actualizarDatosSociodemograficos(
+            this.param(),
+            datosSociodemograficos
+          )
           .subscribe({
             next: (response) => {
               if (response) {

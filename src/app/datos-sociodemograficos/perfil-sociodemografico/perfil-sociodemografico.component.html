@@ -295,7 +295,7 @@
     </form>
   </div>
   <div class="botonesAuxiliares">
-    @if (param === 'crearUsuario') {
+    @if (param() === 'crearUsuario') {
     <button
       mat-raised-button
       (click)="enviarInformacion()"

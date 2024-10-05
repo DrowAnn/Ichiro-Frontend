@@ -31,7 +31,6 @@ export interface DatosSociodemograficosDto {
   telefonoConyuge?: string;
   tieneHijos?: boolean;
   cuantosHijosTiene?: number;
-  datosHijos?: object;
   personasNucleoFamiliar?: number;
   personasDependientesEconomicamente?: number;
   parentescos?: string;

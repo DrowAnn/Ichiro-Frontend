@@ -10,15 +10,15 @@
     </button>
   </div>
   <div class="listaColaboradores">
-    @for (area of areas; track $index) {
-    <h3>{{ area.replaceAll("_", " ") }}</h3>
-    @for (colaborador of listaColaboradores(); track $index) { @if
-    (colaborador.activo === true && colaborador.area === area) {
+    <h3>Hijos de {{ nombreColaborador() }}</h3>
+    @for (hijo of listaHijos(); track $index) {
     <button
       mat-raised-button
       [routerLink]="[
         '/perfil-sociodemografico',
-        colaborador.numeroIdentificacion
+        param,
+        'hijos',
+        hijo.identificacionHijo
       ]"
       style="
         margin: 1vh;
@@ -27,22 +27,19 @@
         justify-content: left;
       "
     >
-      {{ $index + 1 }}. {{ colaborador.primerNombre }}
-      {{ colaborador.segundoNombre }} {{ colaborador.primerApellido }}
-      {{ colaborador.segundoApellido }} - {{ colaborador.cargo }}
+      {{ $index + 1 }}. {{ hijo.nombreHijo }}
     </button>
-    } }
-    <mat-divider style="margin-bottom: 4vh; margin-top: 1vh"></mat-divider>
     }
+    <mat-divider style="margin-bottom: 4vh; margin-top: 1vh"></mat-divider>
   </div>
   <div class="botonAuxiliar">
     <button
       mat-raised-button
-      [routerLink]="['/colaboradores/crearUsuario']"
+      [routerLink]="['/perfil-sociodemografico', param, 'hijos', 'crearHijo']"
       style="color: #0bb0f2; border: 1px solid #0bb0f2"
     >
       <mat-icon style="color: rgb(0, 200, 0)">person_add</mat-icon>
-      Crear Usuario
+      Crear Hijo
     </button>
   </div>
 </div>

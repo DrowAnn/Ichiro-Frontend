@@ -5,9 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
-import { Colaborador } from '../../colaboradores/colaboradores.dto';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ColaboradoresService } from '../../servicios/colaboradores/colaboradores.service';
+import { DatosHijosDto } from '../datos-hijos.dto';
+import { DatosSociodemograficosService } from '../../servicios/datos-sociodemograficos/datos-sociodemograficos.service';
 
 @Component({
   selector: 'app-hijos',
@@ -21,43 +22,46 @@ import { ColaboradoresService } from '../../servicios/colaboradores/colaboradore
     CommonModule,
     RouterModule,
   ],
-  providers: [ColaboradoresService],
+  providers: [DatosSociodemograficosService, ColaboradoresService],
   templateUrl: './hijos.component.html',
   styleUrl: './hijos.component.scss',
 })
 export default class HijosComponent {
-  listaColaboradores = signal<Colaborador[]>([]);
-  areas: string[] = [
-    'Asistencial',
-    'Administrativo',
-    'Financiero',
-    'Estetica',
-    'Comercial',
-    'Recepcion',
-    'Programacion',
-    'Instrumental_Y_Central_De_Lavado',
-    'Farmacia',
-    'Hospitalizacion',
-    'Servicios_Generales',
-    'Mantenimiento',
-    'Medicina_General',
-    'Rayos_X',
-  ].sort();
+  listaHijos = signal<DatosHijosDto[]>([]);
+  param: string = '';
+  nombreColaborador = signal<string>('');
 
-  constructor(private readonly colaboradoresService: ColaboradoresService) {
-    this.colaboradoresService.obtenerColaboradores().subscribe({
-      next: (response: Colaborador[]) => {
-        this.listaColaboradores.set(response);
-        this.listaColaboradores().sort((a, b) => {
-          if ((a?.area ?? '').localeCompare(b?.area ?? '') == 0) {
-            return a.primerNombre.localeCompare(b.primerNombre);
-          }
-          return (a?.area ?? '').localeCompare(b?.area ?? '');
+  constructor(
+    private readonly datosSociodemograficosService: DatosSociodemograficosService,
+    private readonly colaboradoresService: ColaboradoresService,
+    route: ActivatedRoute
+  ) {
+    this.param = route.snapshot.paramMap.get('numeroIdentificacion') ?? '';
+
+    if (this.param !== '') {
+      this.colaboradoresService.obtenerColaborador(this.param).subscribe({
+        next: (response) => {
+          this.nombreColaborador.set(
+            `${response.primerNombre} ${response.primerApellido}`
+          );
+        },
+      });
+
+      this.datosSociodemograficosService
+        .obtenerTodosDatosHijosColaborador(this.param)
+        .subscribe({
+          next: (response: DatosHijosDto[]) => {
+            this.listaHijos.set(response);
+            this.listaHijos().sort((a, b) => {
+              if (
+                (a?.nombreHijo ?? '').localeCompare(b?.nombreHijo ?? '') == 0
+              ) {
+                return a.identificacionHijo.localeCompare(b.identificacionHijo);
+              }
+              return (a?.nombreHijo ?? '').localeCompare(b?.nombreHijo ?? '');
+            });
+          },
         });
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    }
   }
 }

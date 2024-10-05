@@ -54,15 +54,20 @@ export class DatosSociodemograficosService {
 
   //Datos Hijos
 
-  obtenerTodosDatosHijosColaborador(): Observable<DatosHijosDto[]> {
-    return this.http.get<DatosHijosDto[]>(this.urlDatosHijos);
-  }
-
-  obtenerDatosHijoColaborador(
+  obtenerTodosDatosHijosColaborador(
     numeroIdentificacion: string
   ): Observable<DatosHijosDto[]> {
     return this.http.get<DatosHijosDto[]>(
       `${this.urlDatosHijos}/${numeroIdentificacion}`
+    );
+  }
+
+  obtenerDatosHijoColaborador(
+    numeroIdentificacion: string,
+    identificacionHijo: string
+  ): Observable<DatosHijosDto[]> {
+    return this.http.get<DatosHijosDto[]>(
+      `${this.urlDatosHijos}/${numeroIdentificacion}/${identificacionHijo}`
     );
   }
 
