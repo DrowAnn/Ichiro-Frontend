@@ -1,1 +1,92 @@
-<p>datos-hijos works!</p>
+<div class="contenedor">
+  <div class="botonesAuxiliares">
+    <button
+      mat-raised-button
+      [routerLink]="[
+        '/perfil-sociodemografico',
+        params['numeroIdentificacion'],
+        'hijos'
+      ]"
+      style="color: #0bb0f2; border: 1px solid #0bb0f2"
+    >
+      <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
+      Lista de Hijos
+    </button>
+  </div>
+  <div class="formulario">
+    <form
+      [formGroup]="formularioDatosHijo"
+      style="display: flex; flex-direction: column; width: 100%"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>Numero de Identificación del Padre</mat-label>
+        <input formControlName="numeroIdentificacion" required matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del Hijo</mat-label>
+        <input formControlName="nombreHijo" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Numero de Identificación del Hijo</mat-label>
+        <input formControlName="identificacionHijo" required matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input
+          matInput
+          [matDatepicker]="fechaNacimientoHijo"
+          formControlName="fechaNacimientoHijo"
+          #valorFechaNacimientoHijo
+          (dateChange)="calculoEdad(valorFechaNacimientoHijo.value)"
+        />
+        <mat-hint>Mes/Dia/Año</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="fechaNacimientoHijo"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #fechaNacimientoHijo> </mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Edad del Hijo</mat-label>
+        <input type="number" [disabled]="true" matInput [value]="edadHijo()" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Género</mat-label>
+        <mat-select formControlName="generoHijo">
+          <mat-option value="Masculino">Masculino</mat-option>
+          <mat-option value="Femenino">Femenino</mat-option>
+          <mat-option value="Otro">Otro</mat-option>
+          <mat-option>--</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="botonesAuxiliares">
+    @if (params['identificacionHijo'] === 'crearHijo') {
+    <button
+      mat-raised-button
+      (click)="enviarInformacion()"
+      style="color: #0bb0f2; border: 1px solid #0bb0f2"
+    >
+      <mat-icon>add</mat-icon>
+      Crear
+    </button>
+    } @else {
+    <button
+      mat-raised-button
+      (click)="enviarInformacion()"
+      style="color: #0bb0f2; border: 1px solid #0bb0f2"
+    >
+      <mat-icon style="font-weight: 600">sync</mat-icon>
+      Actualizar
+    </button>
+    } @if (mensajeRespuesta() !== '') {
+    <p [ngStyle]="estilosMensaje()">{{ mensajeRespuesta() }}</p>
+    }
+  </div>
+</div>

@@ -28,7 +28,7 @@ import { DatosSociodemograficosService } from '../../servicios/datos-sociodemogr
 })
 export default class HijosComponent {
   listaHijos = signal<DatosHijosDto[]>([]);
-  param: string = '';
+  param = signal<string>('');
   nombreColaborador = signal<string>('');
 
   constructor(
@@ -36,10 +36,10 @@ export default class HijosComponent {
     private readonly colaboradoresService: ColaboradoresService,
     route: ActivatedRoute
   ) {
-    this.param = route.snapshot.paramMap.get('numeroIdentificacion') ?? '';
+    this.param.set(route.snapshot.paramMap.get('numeroIdentificacion') ?? '');
 
-    if (this.param !== '') {
-      this.colaboradoresService.obtenerColaborador(this.param).subscribe({
+    if (this.param() !== '') {
+      this.colaboradoresService.obtenerColaborador(this.param()).subscribe({
         next: (response) => {
           this.nombreColaborador.set(
             `${response.primerNombre} ${response.primerApellido}`
@@ -48,7 +48,7 @@ export default class HijosComponent {
       });
 
       this.datosSociodemograficosService
-        .obtenerTodosDatosHijosColaborador(this.param)
+        .obtenerTodosDatosHijosColaborador(this.param())
         .subscribe({
           next: (response: DatosHijosDto[]) => {
             this.listaHijos.set(response);

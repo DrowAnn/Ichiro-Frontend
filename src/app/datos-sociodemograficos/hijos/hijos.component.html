@@ -2,11 +2,11 @@
   <div class="botonAuxiliar">
     <button
       mat-raised-button
-      routerLink="/modulos"
+      [routerLink]="['/perfil-sociodemografico', param()]"
       style="color: #0bb0f2; border: 1px solid #0bb0f2"
     >
       <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
-      Modulos
+      Perfil Colaborador
     </button>
   </div>
   <div class="listaColaboradores">
@@ -16,7 +16,7 @@
       mat-raised-button
       [routerLink]="[
         '/perfil-sociodemografico',
-        param,
+        param(),
         'hijos',
         hijo.identificacionHijo
       ]"
@@ -35,7 +35,7 @@
   <div class="botonAuxiliar">
     <button
       mat-raised-button
-      [routerLink]="['/perfil-sociodemografico', param, 'hijos', 'crearHijo']"
+      [routerLink]="['/perfil-sociodemografico', param(), 'hijos', 'crearHijo']"
       style="color: #0bb0f2; border: 1px solid #0bb0f2"
     >
       <mat-icon style="color: rgb(0, 200, 0)">person_add</mat-icon>

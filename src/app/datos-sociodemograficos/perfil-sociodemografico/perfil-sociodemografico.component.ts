@@ -103,7 +103,6 @@ export default class PerfilSociodemograficoComponent {
         .obtenerDatosSociodemograficos(this.param())
         .subscribe({
           next: (response: DatosSociodemograficosDto) => {
-            console.log(response);
             if (response) {
               if (response.ultimaAplicacion) {
                 let ua = new Date(response.ultimaAplicacion ?? '');
