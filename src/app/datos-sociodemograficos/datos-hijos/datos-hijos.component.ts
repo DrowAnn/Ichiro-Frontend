@@ -104,14 +104,18 @@ export default class DatosHijosComponent {
           .subscribe({
             next: (response) => {
               if (response) {
-                this.mensajeRespuesta.set('Colaborador creado con exito');
+                this.mensajeRespuesta.set(
+                  'Hijo del colaborador creado con exito'
+                );
                 this.estilosMensaje.set({
                   color: 'rgb(0, 200, 0)',
                 });
               }
             },
             error: (error) => {
-              this.mensajeRespuesta.set('No se pudo crear el colaborador');
+              this.mensajeRespuesta.set(
+                'No se pudo crear el hijo del colaborador'
+              );
               this.estilosMensaje.set({ color: 'red' });
               console.log(error);
             },
@@ -126,14 +130,18 @@ export default class DatosHijosComponent {
           .subscribe({
             next: (response) => {
               if (response) {
-                this.mensajeRespuesta.set('Colaborador actualizado con exito');
+                this.mensajeRespuesta.set(
+                  'Hijo del colaborador actualizado con exito'
+                );
                 this.estilosMensaje.set({
                   color: 'rgb(0, 200, 0)',
                 });
               }
             },
             error: (error) => {
-              this.mensajeRespuesta.set('No se pudo actualizar el colaborador');
+              this.mensajeRespuesta.set(
+                'No se pudo actualizar el hijo del colaborador'
+              );
               this.estilosMensaje.set({ color: 'red' });
               console.log(error);
             },
