@@ -17,6 +17,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-datos-personales',
@@ -32,6 +33,7 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     MatCheckboxModule,
     CommonModule,
+    MatStepperModule,
   ],
   providers: [ColaboradoresService, provideNativeDateAdapter()],
   templateUrl: './datos-personales.component.html',

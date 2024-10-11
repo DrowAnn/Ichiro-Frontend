@@ -1,0 +1,28 @@
+<div class="contenedor">
+  <h1 style="color: #0bb0f2">Jornadas Laborales</h1>
+  <div class="contenedorEnlaces">
+    <div class="boton">
+      <button
+        mat-raised-button
+        routerLink="/modulos"
+        style="color: #0bb0f2; border: 1px solid #0bb0f2"
+      >
+        <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
+        Módulos
+      </button>
+    </div>
+    <div class="enlaces">
+      @for (modulo of infoModulos; track $index) { @if
+      (modulo.roles.includes(rolUsuario())) {
+      <app-cards-modulos
+        [perfilImg]="modulo.perfilImg"
+        [titulo]="modulo.titulo"
+        [subtitulo]="modulo.subtitulo"
+        [contenido]="modulo.contenido"
+        [href]="modulo.href"
+      />
+      } }
+    </div>
+    <div class="boton"></div>
+  </div>
+</div>

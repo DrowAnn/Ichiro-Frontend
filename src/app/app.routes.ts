@@ -52,8 +52,10 @@ export const routes: Routes = [
   },
   {
     path: 'jornadas-laborales',
-    loadComponent: () =>
-      import('./jornadas-laborales/jornadas-laborales.component'),
+    loadChildren: () =>
+      import('./jornadas-laborales/jornadas-laborales.routes').then(
+        (m) => m.routes
+      ),
     canActivate: [AuthGuard],
     data: {
       rolesPermitidos: ['Super_Usuario', 'Administrador', 'Lider_De_Area'],

@@ -32,7 +32,7 @@ export default class InterfazModulosComponent {
       titulo: 'Colaboradores',
       subtitulo: 'RRHH',
       contenido:
-        'En este módulo podrás consultar y/o administrar los datos laborales de cada colaborador de la compañía',
+        'En este módulo podrás consultar y/o administrar los datos laborales de cada colaborador',
       href: '/colaboradores',
       roles: ['Super_Usuario', 'Administrador', 'Lider_De_Area', 'Colaborador'],
     },
@@ -41,14 +41,14 @@ export default class InterfazModulosComponent {
       titulo: 'Perfil Sociodemográfico',
       subtitulo: 'RRHH',
       contenido:
-        'En este módulo podrás consultar y/o administrar el perfil sociodemográfico de cada colaborador de la compañía',
+        'En este módulo podrás consultar y/o administrar el perfil sociodemográfico de cada colaborador',
       href: '/perfil-sociodemografico',
       roles: ['Super_Usuario', 'Administrador'],
     },
     {
       perfilImg: '/imagenes/jl.png',
       titulo: 'Jornadas Laborales',
-      subtitulo: 'RRHH',
+      subtitulo: 'RRHH/Financiero',
       contenido:
         'En este módulo podrás consultar y/o administrar las jornadas laborales de cada colaborador, su cumplimiento y el cálculos de recargos y horas extras',
       href: '/jornadas-laborales',

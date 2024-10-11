@@ -1,0 +1,62 @@
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../servicios/auth/auth.service';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { CardsModulosComponent } from '../../componentes/cards-modulos/cards-modulos.component';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-modulos',
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    MatCardModule,
+    CommonModule,
+    CardsModulosComponent,
+    MatIconModule,
+    RouterModule,
+  ],
+  templateUrl: './modulos.component.html',
+  styleUrl: './modulos.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export default class ModulosComponent {
+  rolUsuario = signal<string>('');
+
+  constructor(private readonly authService: AuthService) {
+    const infoUsuario = authService.obtenerInfoUsuario();
+    this.rolUsuario.set(infoUsuario?.rol ?? '');
+  }
+
+  infoModulos = [
+    {
+      perfilImg: '/imagenes/ho.png',
+      titulo: 'Horarios',
+      subtitulo: 'RRHH',
+      contenido:
+        'En este módulo podrás asignar, consultar y/o administrar los horarios de cada colaborador',
+      href: '/jornadas-laborales/horarios',
+      roles: ['Super_Usuario', 'Administrador', 'Lider_De_Area', 'Colaborador'],
+    },
+    {
+      perfilImg: '/imagenes/ah.png',
+      titulo: 'Auditoria de Horarios',
+      subtitulo: 'Financiero',
+      contenido:
+        'En este módulo podrás consultar y/o auditar los horarios asignados de cada colaborador',
+      href: '/jornadas-laborales/auditorias-horarios',
+      roles: ['Super_Usuario', 'Administrador'],
+    },
+    {
+      perfilImg: '/imagenes/lh.png',
+      titulo: 'Liquidación de Horas',
+      subtitulo: 'Financiero',
+      contenido:
+        'En este módulo podrás consultar y/o causar las liquidaciones de las jornadas laborales de cada colaborador, su cumplimiento y el cálculos de recargos y horas extras',
+      href: '/jornadas-laborales/liquidaciones-horas',
+      roles: ['Super_Usuario', 'Administrador'],
+    },
+  ];
+}

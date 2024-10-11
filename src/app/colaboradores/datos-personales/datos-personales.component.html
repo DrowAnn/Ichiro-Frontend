@@ -10,179 +10,195 @@
     </button>
   </div>
   <div class="formulario">
-    <form
-      [formGroup]="formularioColaborador"
-      style="display: flex; justify-content: space-around; flex-wrap: wrap"
-    >
-      <mat-form-field appearance="outline">
-        <mat-label>Numero de Identificación</mat-label>
-        <input formControlName="numeroIdentificacion" required matInput />
-      </mat-form-field>
+    <form [formGroup]="formularioColaborador" style="width: 100%">
+      <mat-stepper orientation="vertical" [linear]="false" #stepper>
+        <!-- Primer paso -->
+        <mat-step>
+          <ng-template matStepLabel>Datos Personales</ng-template>
+          <div class="stepBox">
+            <mat-form-field appearance="outline" style="margin-top: 1.5vh">
+              <mat-label>Numero de Identificación</mat-label>
+              <input formControlName="numeroIdentificacion" required matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Primer Nombre</mat-label>
-        <input formControlName="primerNombre" required matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Primer Nombre</mat-label>
+              <input formControlName="primerNombre" required matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Segundo Nombre</mat-label>
-        <input formControlName="segundoNombre" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Segundo Nombre</mat-label>
+              <input formControlName="segundoNombre" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Primer Apellido</mat-label>
-        <input formControlName="primerApellido" required matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Primer Apellido</mat-label>
+              <input formControlName="primerApellido" required matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Segundo Apellido</mat-label>
-        <input formControlName="segundoApellido" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Segundo Apellido</mat-label>
+              <input formControlName="segundoApellido" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Celular</mat-label>
-        <input formControlName="celular" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Celular</mat-label>
+              <input formControlName="celular" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Correo</mat-label>
-        <input formControlName="correo" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Correo</mat-label>
+              <input formControlName="correo" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Dirección</mat-label>
-        <input formControlName="direccion" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Dirección</mat-label>
+              <input formControlName="direccion" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Teléfono Fijo</mat-label>
-        <input formControlName="telefonoFijo" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Teléfono Fijo</mat-label>
+              <input formControlName="telefonoFijo" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Nacimiento</mat-label>
-        <input
-          matInput
-          [matDatepicker]="fechaNacimiento"
-          formControlName="fechaNacimiento"
-        />
-        <mat-hint>Mes/Dia/Año</mat-hint>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="fechaNacimiento"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #fechaNacimiento> </mat-datepicker>
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Género</mat-label>
+              <mat-select formControlName="genero">
+                <mat-option value="Masculino">Masculino</mat-option>
+                <mat-option value="Femenino">Femenino</mat-option>
+                <mat-option value="Otro">Otro</mat-option>
+                <mat-option>--</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Ingreso</mat-label>
-        <input
-          matInput
-          [matDatepicker]="fechaIngreso"
-          formControlName="fechaIngreso"
-        />
-        <mat-hint>Mes/Dia/Año</mat-hint>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="fechaIngreso"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #fechaIngreso> </mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Género</mat-label>
-        <mat-select formControlName="genero">
-          <mat-option value="Masculino">Masculino</mat-option>
-          <mat-option value="Femenino">Femenino</mat-option>
-          <mat-option value="Otro">Otro</mat-option>
-          <mat-option>--</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Cargo</mat-label>
-        <input formControlName="cargo" matInput />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Área</mat-label>
-        <mat-select formControlName="area">
-          <mat-option value="Administrativo">Administrativo</mat-option>
-          <mat-option value="Asistencial">Asistencial</mat-option>
-          <mat-option value="Comercial">Comercial</mat-option>
-          <mat-option value="Estetica">Estética</mat-option>
-          <mat-option value="Farmacia">Farmacia</mat-option>
-          <mat-option value="Financiero">Financiero</mat-option>
-          <mat-option value="Hospitalizacion">Hospitalización</mat-option>
-          <mat-option value="Instrumental_Y_Central_De_Lavado"
-            >Instrumental Y Central De Lavado</mat-option
+            <mat-form-field appearance="outline">
+              <mat-label>Fecha de Nacimiento</mat-label>
+              <input
+                matInput
+                [matDatepicker]="fechaNacimiento"
+                formControlName="fechaNacimiento"
+              />
+              <mat-hint>Mes/Dia/Año</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="fechaNacimiento"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #fechaNacimiento> </mat-datepicker>
+            </mat-form-field>
+          </div>
+        </mat-step>
+        <!-- Segundo Paso -->
+        <mat-step>
+          <ng-template matStepLabel
+            >Datos Laborales y Profesionales</ng-template
           >
-          <mat-option value="Mantenimiento">Mantenimiento</mat-option>
-          <mat-option value="Medicina_General">Medicina General</mat-option>
-          <mat-option value="Programacion">Programación</mat-option>
-          <mat-option value="Rayos_X">Rayos X</mat-option>
-          <mat-option value="Recepcion">Recepción</mat-option>
-          <mat-option value="Servicios_Generales"
-            >Servicios Generales</mat-option
-          >
-          <mat-option>--</mat-option>
-        </mat-select>
-      </mat-form-field>
+          <div class="stepBox">
+            <mat-form-field appearance="outline" style="margin: 1.5vh 0">
+              <mat-label>Fecha de Ingreso</mat-label>
+              <input
+                matInput
+                [matDatepicker]="fechaIngreso"
+                formControlName="fechaIngreso"
+              />
+              <mat-hint>Mes/Dia/Año</mat-hint>
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="fechaIngreso"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #fechaIngreso> </mat-datepicker>
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Riesgo ARL</mat-label>
-        <input formControlName="riesgoARL" type="number" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Cargo</mat-label>
+              <input formControlName="cargo" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Tipo de Contrato</mat-label>
-        <mat-select formControlName="tipoContrato">
-          <mat-option value="Termino Fijo">Termino Fijo</mat-option>
-          <mat-option value="Indefinido">Indefinido</mat-option>
-          <mat-option value="Aprendizaje">Aprendizaje</mat-option>
-          <mat-option>--</mat-option>
-        </mat-select>
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Área</mat-label>
+              <mat-select formControlName="area">
+                <mat-option value="Administrativo">Administrativo</mat-option>
+                <mat-option value="Asistencial">Asistencial</mat-option>
+                <mat-option value="Comercial">Comercial</mat-option>
+                <mat-option value="Estetica">Estética</mat-option>
+                <mat-option value="Farmacia">Farmacia</mat-option>
+                <mat-option value="Financiero">Financiero</mat-option>
+                <mat-option value="Hospitalizacion">Hospitalización</mat-option>
+                <mat-option value="Instrumental_Y_Central_De_Lavado"
+                  >Instrumental Y Central De Lavado</mat-option
+                >
+                <mat-option value="Mantenimiento">Mantenimiento</mat-option>
+                <mat-option value="Medicina_General"
+                  >Medicina General</mat-option
+                >
+                <mat-option value="Programacion">Programación</mat-option>
+                <mat-option value="Rayos_X">Rayos X</mat-option>
+                <mat-option value="Recepcion">Recepción</mat-option>
+                <mat-option value="Servicios_Generales"
+                  >Servicios Generales</mat-option
+                >
+                <mat-option>--</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Profesión</mat-label>
-        <input formControlName="profesion" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Riesgo ARL</mat-label>
+              <input formControlName="riesgoARL" type="number" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Escolaridad</mat-label>
-        <input formControlName="escolaridad" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo de Contrato</mat-label>
+              <mat-select formControlName="tipoContrato">
+                <mat-option value="Termino Fijo">Termino Fijo</mat-option>
+                <mat-option value="Indefinido">Indefinido</mat-option>
+                <mat-option value="Aprendizaje">Aprendizaje</mat-option>
+                <mat-option>--</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Experiencia en Años</mat-label>
-        <input formControlName="experienciaAnos" type="number" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Profesión</mat-label>
+              <input formControlName="profesion" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Salario Base</mat-label>
-        <input formControlName="salarioBase" type="number" matInput />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Escolaridad</mat-label>
+              <input formControlName="escolaridad" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Horas Mensuales Contratadas</mat-label>
-        <input
-          formControlName="horasMensualesContratadas"
-          type="number"
-          matInput
-        />
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Experiencia en Años</mat-label>
+              <input formControlName="experienciaAnos" type="number" matInput />
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Forma de Pago</mat-label>
-        <mat-select formControlName="formaPago">
-          <mat-option value="Mensual">Mensual</mat-option>
-          <mat-option value="Quincenal">Quincenal</mat-option>
-          <mat-option>--</mat-option>
-        </mat-select>
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Salario Base</mat-label>
+              <input formControlName="salarioBase" type="number" matInput />
+            </mat-form-field>
 
-      <mat-checkbox formControlName="activo">Activo</mat-checkbox>
+            <mat-form-field appearance="outline">
+              <mat-label>Horas Mensuales Contratadas</mat-label>
+              <input
+                formControlName="horasMensualesContratadas"
+                type="number"
+                matInput
+              />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Forma de Pago</mat-label>
+              <mat-select formControlName="formaPago">
+                <mat-option value="Mensual">Mensual</mat-option>
+                <mat-option value="Quincenal">Quincenal</mat-option>
+                <mat-option>--</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </mat-step>
+        <!-- Paso Final -->
+        <mat-step>
+          <ng-template matStepLabel>Final</ng-template>
+        </mat-step>
+      </mat-stepper>
     </form>
   </div>
   <div class="botonesAuxiliares">
