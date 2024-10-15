@@ -15,17 +15,13 @@
 
 .boton {
   display: flex;
-  justify-content: right;
-  width: 20vw;
-  margin: 0;
-  padding: 0;
+  justify-content: center;
 }
 
 .enlaces {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
   justify-content: center;
   align-items: center;
 }

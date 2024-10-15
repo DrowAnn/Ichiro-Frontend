@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../servicios/auth/auth.service';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  signal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CardsModulosComponent } from '../../componentes/cards-modulos/cards-modulos.component';
@@ -22,12 +27,43 @@ import { RouterModule } from '@angular/router';
   styleUrl: './modulos.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class ModulosComponent {
+export default class ModulosComponent implements AfterViewInit {
   rolUsuario = signal<string>('');
 
   constructor(private readonly authService: AuthService) {
     const infoUsuario = authService.obtenerInfoUsuario();
     this.rolUsuario.set(infoUsuario?.rol ?? '');
+  }
+
+  ngAfterViewInit(): void {
+    this.tamanoElementos();
+    window.addEventListener('resize', this.tamanoElementos);
+  }
+
+  tamanoElementos(): void {
+    const contenedor = document.getElementById('contenedor');
+    const tarjetaModulo = document.getElementById('modulo0');
+    const enlaces = document.getElementById('enlaces');
+    const boton1 = document.getElementById('boton1');
+    const boton2 = document.getElementById('boton2');
+    const screenWidth = window.innerWidth;
+
+    console.log(screenWidth);
+
+    const contenedorWidth = contenedor ? contenedor.clientWidth : 0;
+
+    console.log(contenedorWidth);
+    const tarjetaWidth = tarjetaModulo ? tarjetaModulo.clientWidth : 0;
+    const enlacesWidth = tarjetaWidth * 2 + (screenWidth / 100) * 0.2;
+    console.log(enlacesWidth);
+    const botonWidth = (contenedorWidth - enlacesWidth) / 2;
+    console.log(botonWidth);
+
+    enlaces
+      ? (enlaces.style.width = `${enlacesWidth}px`)
+      : console.log('Asignación no realizada');
+    boton1 ? (boton1.style.width = `${botonWidth}px`) : 0;
+    boton2 ? (boton2.style.width = `${botonWidth}px`) : 0;
   }
 
   infoModulos = [
@@ -54,7 +90,7 @@ export default class ModulosComponent {
       titulo: 'Liquidación de Horas',
       subtitulo: 'Financiero',
       contenido:
-        'En este módulo podrás consultar y/o causar las liquidaciones de las jornadas laborales de cada colaborador, su cumplimiento y el cálculos de recargos y horas extras',
+        'En este módulo podrás consultar y/o causar las liquidaciones de las horas laboradas de cada colaborador, su cumplimiento y el cálculos de recargos y horas extras',
       href: '/jornadas-laborales/liquidaciones-horas',
       roles: ['Super_Usuario', 'Administrador'],
     },

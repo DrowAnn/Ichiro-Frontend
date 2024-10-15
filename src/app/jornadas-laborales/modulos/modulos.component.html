@@ -1,17 +1,17 @@
-<div class="contenedor">
+<div class="contenedor" id="contenedor">
   <h1 style="color: #0bb0f2">Jornadas Laborales</h1>
   <div class="contenedorEnlaces">
-    <div class="boton">
+    <div class="boton" id="boton1">
       <button
         mat-raised-button
         routerLink="/modulos"
-        style="color: #0bb0f2; border: 1px solid #0bb0f2"
+        style="color: #0bb0f2; border: 1px solid #0bb0f2; margin-left: 2vw"
       >
         <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
         Módulos
       </button>
     </div>
-    <div class="enlaces">
+    <div class="enlaces" id="enlaces">
       @for (modulo of infoModulos; track $index) { @if
       (modulo.roles.includes(rolUsuario())) {
       <app-cards-modulos
@@ -20,9 +20,10 @@
         [subtitulo]="modulo.subtitulo"
         [contenido]="modulo.contenido"
         [href]="modulo.href"
+        [id]="'modulo' + $index"
       />
       } }
     </div>
-    <div class="boton"></div>
+    <div class="boton" id="boton2"></div>
   </div>
 </div>
