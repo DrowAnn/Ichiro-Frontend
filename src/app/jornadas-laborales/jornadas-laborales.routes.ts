@@ -17,7 +17,8 @@ export const routes: Route[] = [
       },
       {
         path: 'horarios',
-        loadComponent: () => import('./horarios/horarios.component'),
+        loadChildren: () =>
+          import('./horarios/horarios.routes').then((m) => m.routes),
       },
       {
         path: 'auditorias-horarios',

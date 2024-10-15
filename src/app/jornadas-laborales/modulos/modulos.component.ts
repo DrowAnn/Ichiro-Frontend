@@ -48,16 +48,10 @@ export default class ModulosComponent implements AfterViewInit {
     const boton2 = document.getElementById('boton2');
     const screenWidth = window.innerWidth;
 
-    console.log(screenWidth);
-
     const contenedorWidth = contenedor ? contenedor.clientWidth : 0;
-
-    console.log(contenedorWidth);
     const tarjetaWidth = tarjetaModulo ? tarjetaModulo.clientWidth : 0;
     const enlacesWidth = tarjetaWidth * 2 + (screenWidth / 100) * 0.2;
-    console.log(enlacesWidth);
     const botonWidth = (contenedorWidth - enlacesWidth) / 2;
-    console.log(botonWidth);
 
     enlaces
       ? (enlaces.style.width = `${enlacesWidth}px`)
