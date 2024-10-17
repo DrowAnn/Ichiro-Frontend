@@ -1,16 +1,29 @@
 .contenedor {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
 }
 
 .formulario {
-  width: 50vw;
+  width: 77vw;
+  overflow-x: scroll;
 }
 
 .botones {
   display: flex;
   justify-content: center;
   width: 14vw;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding-left: 2vw;
+}
+
+mat-form-field {
+  min-width: 18vw;
+  margin: 1vh 0.4vw;
 }

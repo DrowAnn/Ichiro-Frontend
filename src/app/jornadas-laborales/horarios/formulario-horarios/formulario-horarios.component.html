@@ -1,21 +1,138 @@
 <div class="contenedor">
+  <div class="formulario">
+    <form [formGroup]="formularioHorarios">
+      <mat-form-field appearance="outline">
+        <mat-label>Numero de Identificación</mat-label>
+        <input formControlName="numeroIdentificacion" required matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha y Hora de Ingreso</mat-label>
+        <mtx-datetimepicker
+          #fechaHoraIngresoProgramada
+          type="datetime"
+          mode="portrait"
+          [timeInput]="true"
+        >
+        </mtx-datetimepicker>
+        <input
+          [mtxDatetimepicker]="fechaHoraIngresoProgramada"
+          #pollo
+          matInput
+          (input)="fechaIngreso(pollo.value)"
+          required
+        />
+        <mat-hint>Año-Mes-Día Horas:Minutos</mat-hint>
+        <mtx-datetimepicker-toggle
+          [for]="fechaHoraIngresoProgramada"
+          matSuffix
+        ></mtx-datetimepicker-toggle>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha y Hora de Salida</mat-label>
+        <mtx-datetimepicker
+          #fechaHoraSalidaProgramada
+          type="datetime"
+          mode="portrait"
+          [timeInput]="true"
+        >
+        </mtx-datetimepicker>
+        <input
+          [mtxDatetimepicker]="fechaHoraSalidaProgramada"
+          matInput
+          required
+        />
+        <mat-hint>Año-Mes-Día Horas:Minutos</mat-hint>
+        <mtx-datetimepicker-toggle
+          [for]="fechaHoraSalidaProgramada"
+          matSuffix
+        ></mtx-datetimepicker-toggle>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Hora para Desayunar</mat-label>
+        <input
+          formControlName="horaDesayuno"
+          [value]="fechaIngesoSignal()"
+          matInput
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tiempo para Desayunar</mat-label>
+        <input type="number" formControlName="tiempoDesayuno" matInput />
+        <mat-hint>Tiempo en Minutos</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Hora para Almorzar</mat-label>
+        <input formControlName="horaAlmuerzo" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tiempo para Almorzar</mat-label>
+        <input type="number" formControlName="tiempoAlmuerzo" matInput />
+        <mat-hint>Tiempo en Minutos</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Hora para Cenar</mat-label>
+        <input formControlName="horaCena" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tiempo para Cenar</mat-label>
+        <input type="number" formControlName="tiempoCena" matInput />
+        <mat-hint>Tiempo en Minutos</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Hora Receso</mat-label>
+        <input formControlName="horaOtroReceso" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tiempo Receso</mat-label>
+        <input type="number" formControlName="tiempoReceso" matInput />
+        <mat-hint>Tiempo en Minutos</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Horas Programadas</mat-label>
+        <input formControlName="horasProgramadas" matInput />
+        <mat-hint>Tiempo en Horas</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Horas Acumuladas Semana</mat-label>
+        <input matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Horas Acumuladas Mes</mat-label>
+        <input matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Area o Funciones Programadas</mat-label>
+        <input formControlName="areaFuncionProgramada" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Observaciones o Novedades</mat-label>
+        <input
+          type="text"
+          formControlName="observacionNovedadesHorarios"
+          matInput
+        />
+      </mat-form-field>
+    </form>
+  </div>
   <div class="botones">
     <button
       mat-raised-button
       [routerLink]="['/jornadas-laborales']"
-      style="color: #0bb0f2; border: 1px solid #0bb0f2"
-    >
-      <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
-      Jornadas Laborales
-    </button>
-  </div>
-  <div class="formulario">
-    <form>hello</form>
-  </div>
-  <div class="botones">
-    <button
-      mat-raised-button
-      routerLink="/modulos"
       style="color: #0bb0f2; border: 1px solid #0bb0f2"
     >
       <mat-icon style="font-weight: 600">subdirectory_arrow_left</mat-icon>
