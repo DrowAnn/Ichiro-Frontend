@@ -17,9 +17,8 @@
         </mtx-datetimepicker>
         <input
           [mtxDatetimepicker]="fechaHoraIngresoProgramada"
-          #pollo
           matInput
-          (input)="fechaIngreso(pollo.value)"
+          (dateChange)="fechaIngreso($event.value)"
           required
         />
         <mat-hint>Año-Mes-Día Horas:Minutos</mat-hint>
@@ -41,6 +40,7 @@
         <input
           [mtxDatetimepicker]="fechaHoraSalidaProgramada"
           matInput
+          (dateChange)="fechaSalida($event.value)"
           required
         />
         <mat-hint>Año-Mes-Día Horas:Minutos</mat-hint>
@@ -52,16 +52,17 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Hora para Desayunar</mat-label>
-        <input
-          formControlName="horaDesayuno"
-          [value]="fechaIngesoSignal()"
-          matInput
-        />
+        <input formControlName="horaDesayuno" matInput />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Tiempo para Desayunar</mat-label>
-        <input type="number" formControlName="tiempoDesayuno" matInput />
+        <input
+          type="number"
+          formControlName="tiempoDesayuno"
+          matInput
+          (input)="tiempoDesayuno($event)"
+        />
         <mat-hint>Tiempo en Minutos</mat-hint>
       </mat-form-field>
 
@@ -72,7 +73,12 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Tiempo para Almorzar</mat-label>
-        <input type="number" formControlName="tiempoAlmuerzo" matInput />
+        <input
+          type="number"
+          formControlName="tiempoAlmuerzo"
+          matInput
+          (input)="tiempoAlmuerzo($event)"
+        />
         <mat-hint>Tiempo en Minutos</mat-hint>
       </mat-form-field>
 
@@ -83,7 +89,12 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Tiempo para Cenar</mat-label>
-        <input type="number" formControlName="tiempoCena" matInput />
+        <input
+          type="number"
+          formControlName="tiempoCena"
+          matInput
+          (input)="tiempoCena($event)"
+        />
         <mat-hint>Tiempo en Minutos</mat-hint>
       </mat-form-field>
 
@@ -94,13 +105,22 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Tiempo Receso</mat-label>
-        <input type="number" formControlName="tiempoReceso" matInput />
+        <input
+          type="number"
+          formControlName="tiempoReceso"
+          matInput
+          (input)="tiempoReceso($event)"
+        />
         <mat-hint>Tiempo en Minutos</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Horas Programadas</mat-label>
-        <input formControlName="horasProgramadas" matInput />
+        <input
+          formControlName="horasProgramadas"
+          matInput
+          [value]="horasProgramadasSignal()"
+        />
         <mat-hint>Tiempo en Horas</mat-hint>
       </mat-form-field>
 
