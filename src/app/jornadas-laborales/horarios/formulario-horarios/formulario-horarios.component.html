@@ -119,19 +119,21 @@
         <input
           formControlName="horasProgramadas"
           matInput
-          [value]="horasProgramadasSignal()"
+          [value]="horasProgramadasComputed()"
         />
         <mat-hint>Tiempo en Horas</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Horas Acumuladas Semana</mat-label>
-        <input matInput />
+        <input disabled matInput [value]="horasProgramadasSemana()" />
+        <mat-hint>Tiempo en Horas</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Horas Acumuladas Mes</mat-label>
-        <input matInput />
+        <input disabled matInput [value]="horasProgramadasMes()" />
+        <mat-hint>Tiempo en Horas</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline">

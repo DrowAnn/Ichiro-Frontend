@@ -44,6 +44,12 @@ export class JornadasLaboralesService {
     );
   }
 
+  obtenerHorariosRango(fechaInicialRango: Date, fechaFinalRango: Date) {
+    return this.http.get<HorariosDto[]>(
+      `${this.urlHorarios}/rango?fechaHoraInicial=${fechaInicialRango}&fechaHoraFinal=${fechaFinalRango}`
+    );
+  }
+
   obtenerHorario(
     numeroIdentificacion: string,
     fechaHoraIngresoProgramada: Date
