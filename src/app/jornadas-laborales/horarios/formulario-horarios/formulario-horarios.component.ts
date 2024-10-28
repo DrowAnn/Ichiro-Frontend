@@ -116,12 +116,18 @@ export default class FormularioHorariosComponent {
   timepoRecesoSignal = signal<number>(0);
   datosSemana = signal<HorariosDto[]>([]);
   datosMes = signal<HorariosDto[]>([]);
+  numeroIdentificacionSignal = signal<string>('');
+
+  numeroIdentificacionInput(evento: Event) {
+    this.numeroIdentificacionSignal.set(
+      (evento.target as HTMLInputElement).value
+    );
+  }
 
   fechaIngreso(fechaIngresada: string) {
     this.fechaIngresoSignal.set(fechaIngresada.toString());
     this.horasAcumuladasSemana();
     this.horasAcumuladasMes();
-    console.log(this.horasProgramadasComputed());
   }
 
   fechaSalida(fechaSalida: string) {
@@ -154,7 +160,7 @@ export default class FormularioHorariosComponent {
     const tiempoMilisegundos: number =
       new Date(this.fechaSalidaSignal()).getTime() -
       new Date(this.fechaIngresoSignal()).getTime();
-    console.log(tiempoMilisegundos);
+
     const tiempoCalculos =
       !tiempoMilisegundos || isNaN(tiempoMilisegundos) ? 0 : tiempoMilisegundos;
     const timepoHoras: number = tiempoCalculos / 3600000;
@@ -164,11 +170,12 @@ export default class FormularioHorariosComponent {
       (this.timepoAlmuerzoSignal() ?? 0) / 60 -
       (this.timepoCenaSignal() ?? 0) / 60 -
       (this.timepoRecesoSignal() ?? 0) / 60;
-    console.log(tiempoTotal);
-    return tiempoTotal;
+
+    return isNaN(tiempoTotal) ? 0 : tiempoTotal;
   });
 
   async horasAcumuladasSemana() {
+    const numeroIdentificacion: string = this.numeroIdentificacionSignal();
     const fechaReferencia: Date = new Date(this.fechaIngresoSignal());
     const ano: number = fechaReferencia.getFullYear();
     const mes: number = fechaReferencia.getMonth();
@@ -195,7 +202,11 @@ export default class FormularioHorariosComponent {
       );
     }
     this.joranadasLaboralesService
-      .obtenerHorariosRango(fechaInicioSemana, fechaFinalSemana)
+      .obtenerHorariosRango(
+        numeroIdentificacion,
+        fechaInicioSemana,
+        fechaFinalSemana
+      )
       .subscribe({
         next: (response) => {
           this.datosSemana.set(response);
@@ -212,6 +223,7 @@ export default class FormularioHorariosComponent {
   }
 
   async horasAcumuladasMes() {
+    const numeroIdentificacion: string = this.numeroIdentificacionSignal();
     const fechaReferencia: Date = new Date(this.fechaIngresoSignal());
     const ano: number = fechaReferencia.getFullYear();
     const mes: number = fechaReferencia.getMonth();
@@ -231,7 +243,7 @@ export default class FormularioHorariosComponent {
     }
 
     this.joranadasLaboralesService
-      .obtenerHorariosRango(fechaInicioMes, fechaFinalMes)
+      .obtenerHorariosRango(numeroIdentificacion, fechaInicioMes, fechaFinalMes)
       .subscribe({
         next: (response) => {
           this.datosMes.set(response);
@@ -256,10 +268,16 @@ export default class FormularioHorariosComponent {
   }
 
   horasProgramadasSemana = computed(() => {
-    return this.calculoHorasAcumuladas(this.datosSemana());
+    return (
+      this.calculoHorasAcumuladas(this.datosSemana()) +
+      this.horasProgramadasComputed()
+    );
   });
 
   horasProgramadasMes = computed(() => {
-    return this.calculoHorasAcumuladas(this.datosMes());
+    return (
+      this.calculoHorasAcumuladas(this.datosMes()) +
+      this.horasProgramadasComputed()
+    );
   });
 }
