@@ -9,7 +9,12 @@ export const routes: Route[] = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'formulario',
+        redirectTo: 'buscador',
+      },
+      {
+        path: 'buscador',
+        loadComponent: () =>
+          import('./busqueda-horarios/busqueda-horarios.component'),
       },
       {
         path: 'formulario',
